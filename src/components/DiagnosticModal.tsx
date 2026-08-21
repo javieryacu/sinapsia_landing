@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, CheckCircle, ArrowRight, WhatsappLogo } from "@phosphor-icons/react";
+import { X, ArrowRight, WhatsappLogo } from "@phosphor-icons/react";
 import confetti from "canvas-confetti";
 
 interface DiagnosticModalProps {
@@ -9,44 +9,25 @@ interface DiagnosticModalProps {
   onClose: () => void;
 }
 
-const NEED_OPTIONS = [
-  "Optimizar sistemas existentes",
-  "Automatizar tareas repetitivas / procesos manuales",
-  "Conectar e integrar herramientas que no se comunican",
-  "Incorporar Inteligencia Artificial",
-  "Desarrollar una solución o software a medida",
-  "No estoy seguro, necesito un análisis general",
-];
-
 export default function DiagnosticModal({ isOpen, onClose }: DiagnosticModalProps) {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
-  const [selectedNeeds, setSelectedNeeds] = useState<string[]>([]);
   const [details, setDetails] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   if (!isOpen) return null;
 
-  const toggleNeed = (need: string) => {
-    setSelectedNeeds((prev) =>
-      prev.includes(need) ? prev.filter((item) => item !== need) : [...prev, need]
-    );
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     confetti({
-      particleCount: 80,
-      spread: 60,
+      particleCount: 60,
+      spread: 50,
       origin: { y: 0.6 },
-      colors: ["#f4b400", "#09090b", "#ffffff"],
+      colors: ["#f4b400", "#111827", "#ffffff"],
     });
 
-    const needsText =
-      selectedNeeds.length > 0 ? selectedNeeds.join(", ") : "Revisión general de sistemas";
-
-    const text = `Hola Sinapsia! Quiero solicitar un Diagnóstico Inicial Sin Costo.\n\n*Nombre:* ${name || "No especificado"}\n*Empresa:* ${company || "No especificada"}\n*Interés / Necesidad:* ${needsText}\n*Detalles adicionales:* ${details || "Sin detalles adicionales"}`;
+    const text = `Hola Sinapsia! Quiero solicitar un Diagnóstico Inicial Sin Costo.\n\n*Nombre:* ${name || "No especificado"}\n*Empresa:* ${company || "No especificada"}\n*Mensaje:* ${details || "Sin detalles adicionales"}`;
 
     const whatsappUrl = `https://wa.me/5493794552724?text=${encodeURIComponent(text)}`;
 
@@ -54,130 +35,95 @@ export default function DiagnosticModal({ isOpen, onClose }: DiagnosticModalProp
 
     setTimeout(() => {
       window.open(whatsappUrl, "_blank");
-    }, 1200);
+    }, 1000);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
       <div
-        className="relative w-full max-w-2xl bg-white rounded-sm shadow-2xl border border-gray-200 overflow-hidden"
+        className="relative w-full max-w-lg bg-white rounded-md shadow-xl border border-gray-200 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-gray-400 hover:text-[#09090b] hover:bg-gray-100 rounded-sm transition-colors"
+          className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-100 rounded-md transition"
+          aria-label="Cerrar modal"
         >
           <X weight="bold" className="w-5 h-5" />
         </button>
 
-        <div className="p-8 sm:p-10 max-h-[85vh] overflow-y-auto">
+        <div className="p-6 sm:p-8">
           {!submitted ? (
             <div>
-              <h3 className="text-2xl sm:text-3xl font-black text-[#09090b] tracking-tight mb-2 font-['Hanken_Grotesk',sans-serif]">
-                Descubrí cómo potenciar tus sistemas
+              <h3 className="text-2xl font-black text-gray-950 tracking-tight mb-2 font-['Hanken_Grotesk',sans-serif]">
+                Solicitar diagnóstico sin costo
               </h3>
-              <p className="text-gray-600 text-sm sm:text-base mb-8">
-                Completá los siguientes datos. Analizaremos tu situación para mostrarte
-                dónde existe una oportunidad concreta de mejora, sin costo ni compromiso.
+              <p className="text-gray-600 text-sm mb-6">
+                Completá los datos y te responderemos para coordinar el diagnóstico inicial sin costo ni compromiso.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-2 font-['Hanken_Grotesk',sans-serif]">
-                      Tu Nombre / Contacto *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Ej: Martín Gómez"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full px-4 py-3 rounded-sm border border-gray-300 focus:border-[#09090b] focus:ring-1 focus:ring-[#09090b] text-[#09090b] text-sm outline-none transition bg-[#f8f9fa] focus:bg-white"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-2 font-['Hanken_Grotesk',sans-serif]">
-                      Empresa / Rubro
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Ej: Consultora / Distribuidora"
-                      value={company}
-                      onChange={(e) => setCompany(e.target.value)}
-                      className="w-full px-4 py-3 rounded-sm border border-gray-300 focus:border-[#09090b] focus:ring-1 focus:ring-[#09090b] text-[#09090b] text-sm outline-none transition bg-[#f8f9fa] focus:bg-white"
-                    />
-                  </div>
-                </div>
-
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-3 font-['Hanken_Grotesk',sans-serif]">
-                    ¿Qué área te interesa evaluar?
+                  <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5 font-['Hanken_Grotesk',sans-serif]">
+                    Nombre *
                   </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {NEED_OPTIONS.map((option) => {
-                      const isChecked = selectedNeeds.includes(option);
-                      return (
-                        <button
-                          key={option}
-                          type="button"
-                          onClick={() => toggleNeed(option)}
-                          className={`flex items-start gap-3 p-3 text-left rounded-sm border text-sm font-medium transition ${
-                            isChecked
-                              ? "bg-[#09090b] border-[#09090b] text-white"
-                              : "bg-[#f8f9fa] border-gray-200 text-gray-700 hover:border-gray-400"
-                          }`}
-                        >
-                          <div
-                            className={`w-4 h-4 mt-0.5 rounded-sm flex items-center justify-center shrink-0 border ${
-                              isChecked
-                                ? "bg-[#f4b400] border-[#f4b400] text-[#09090b]"
-                                : "border-gray-300 bg-white"
-                            }`}
-                          >
-                            {isChecked && <CheckCircle weight="fill" className="w-4 h-4" />}
-                          </div>
-                          <span>{option}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-2 font-['Hanken_Grotesk',sans-serif]">
-                    Detalles adicionales (opcional)
-                  </label>
-                  <textarea
-                    rows={3}
-                    placeholder="Ej: Usamos Excel y un sistema contable pero no se comunican..."
-                    value={details}
-                    onChange={(e) => setDetails(e.target.value)}
-                    className="w-full px-4 py-3 rounded-sm border border-gray-300 focus:border-[#09090b] focus:ring-1 focus:ring-[#09090b] text-[#09090b] text-sm outline-none transition resize-none bg-[#f8f9fa] focus:bg-white"
+                  <input
+                    type="text"
+                    required
+                    placeholder="Tu nombre"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-md border border-gray-300 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 text-gray-900 text-sm outline-none transition"
                   />
                 </div>
 
-                <div className="pt-4">
+                <div>
+                  <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5 font-['Hanken_Grotesk',sans-serif]">
+                    Empresa
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Nombre de tu empresa"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-md border border-gray-300 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 text-gray-900 text-sm outline-none transition"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5 font-['Hanken_Grotesk',sans-serif]">
+                    ¿En qué podemos ayudarte? (Opcional)
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="Contanos brevemente qué herramientas o procesos utilizás..."
+                    value={details}
+                    onChange={(e) => setDetails(e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-md border border-gray-300 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 text-gray-900 text-sm outline-none transition resize-none"
+                  />
+                </div>
+
+                <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#f4b400] hover:bg-[#d9a000] text-[#09090b] font-bold uppercase tracking-wider text-sm rounded-sm transition cursor-pointer font-['Hanken_Grotesk',sans-serif]"
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#f4b400] hover:bg-[#e0a400] text-gray-950 font-bold text-sm rounded-md transition cursor-pointer font-['Hanken_Grotesk',sans-serif]"
                   >
-                    <span>Enviar a WhatsApp</span>
-                    <ArrowRight weight="bold" className="w-5 h-5" />
+                    <span>Enviar a WhatsApp (3794-552724)</span>
+                    <ArrowRight weight="bold" className="w-4 h-4" />
                   </button>
                 </div>
               </form>
             </div>
           ) : (
-            <div className="py-12 text-center space-y-6">
-              <div className="w-20 h-20 bg-[#f8f9fa] border border-gray-200 rounded-sm flex items-center justify-center mx-auto">
-                <WhatsappLogo weight="regular" className="w-10 h-10 text-[#09090b]" />
+            <div className="py-8 text-center space-y-4">
+              <div className="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+                <WhatsappLogo weight="fill" className="w-8 h-8 text-emerald-600" />
               </div>
-              <h4 className="text-3xl font-black text-[#09090b] font-['Hanken_Grotesk',sans-serif]">
-                ¡Redirigiendo a WhatsApp!
+              <h4 className="text-xl font-bold text-gray-950 font-['Hanken_Grotesk',sans-serif]">
+                Redirigiendo a WhatsApp...
               </h4>
-              <p className="text-gray-600 text-base max-w-md mx-auto">
-                Estamos abriendo tu WhatsApp para conectar directamente con nuestro equipo técnico.
+              <p className="text-gray-600 text-sm">
+                En breves momentos se abrirá la conversación con nuestro equipo.
               </p>
             </div>
           )}

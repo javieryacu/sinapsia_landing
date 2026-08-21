@@ -22,7 +22,7 @@ export default function Home() {
   const handleCloseDiagnostic = () => setIsDiagnosticOpen(false);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-amber-100 selection:text-amber-950 font-sans">
+    <div className="min-h-screen bg-white text-gray-900 flex flex-col font-sans">
       {/* Top Navbar */}
       <Navbar onOpenDiagnostic={handleOpenDiagnostic} />
 
@@ -32,40 +32,40 @@ export default function Home() {
         <Hero onOpenDiagnostic={handleOpenDiagnostic} />
 
         {/* 2. ¿Tu empresa podría funcionar mejor? */}
-        <ProblemSection onOpenDiagnostic={handleOpenDiagnostic} />
+        <ProblemSection />
 
-        {/* 3. Metodología (01 a 05) */}
-        <ProcessSection onOpenDiagnostic={handleOpenDiagnostic} />
+        {/* 3. Primero entendemos tu empresa (01 al 05) */}
+        <ProcessSection />
 
-        {/* 4. Filosofía y Criterio */}
-        <PhilosophySection onOpenDiagnostic={handleOpenDiagnostic} />
+        {/* 4. No todo problema necesita un sistema nuevo */}
+        <PhilosophySection />
 
-        {/* 5. ¿Qué podemos hacer por tu empresa? (5 Servicios) */}
-        <ServicesSection onOpenDiagnostic={handleOpenDiagnostic} />
+        {/* 5. ¿Qué podemos hacer por tu empresa? */}
+        <ServicesSection />
 
-        {/* 6. Visión Integral (No reemplazamos... + Fórmula unificada) */}
-        <VisionSection onOpenDiagnostic={handleOpenDiagnostic} />
+        {/* 6. No reemplazamos tus sistemas... + Una sola visión */}
+        <VisionSection />
 
-        {/* 7. Acompañamiento Continuo */}
-        <LifecycleSection onOpenDiagnostic={handleOpenDiagnostic} />
+        {/* 7. De un problema concreto a una mejora permanente */}
+        <LifecycleSection />
 
-        {/* 8. Preguntas Frecuentes */}
+        {/* 8. Preguntas frecuentes */}
         <FaqSection />
 
-        {/* 9. CTA Final */}
+        {/* 9. Empezá por descubrir qué se puede mejorar */}
         <CtaSection onOpenDiagnostic={handleOpenDiagnostic} />
       </main>
 
       {/* Footer */}
       <Footer onOpenDiagnostic={handleOpenDiagnostic} />
 
-      {/* Interactive Modal */}
+      {/* Modal para solicitar diagnóstico */}
       <DiagnosticModal
         isOpen={isDiagnosticOpen}
         onClose={handleCloseDiagnostic}
       />
 
-      {/* Persistent Floating WhatsApp */}
+      {/* Botón flotante oficial de WhatsApp */}
       <FloatingWhatsApp />
     </div>
   );

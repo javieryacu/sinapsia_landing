@@ -49,38 +49,38 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" className="py-20 sm:py-28 bg-[#f8f9fa] border-b border-gray-200">
+    <section id="faq" className="py-20 sm:py-28 bg-white border-b border-gray-200">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#09090b] tracking-tight font-['Hanken_Grotesk',sans-serif]">
+        {/* Title */}
+        <div className="text-center mb-14">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-950 tracking-tight font-['Hanken_Grotesk',sans-serif]">
             Preguntas frecuentes
           </h2>
         </div>
 
         {/* Accordion List */}
-        <div className="border-t border-gray-200">
+        <div className="border-t border-gray-200 divide-y divide-gray-200">
           {FAQS.map((faq, idx) => {
             const isOpen = openIndex === idx;
 
             return (
-              <div
-                key={idx}
-                className="border-b border-gray-200 bg-white"
-              >
+              <div key={faq.question} className="py-2">
                 <button
                   onClick={() => toggle(idx)}
-                  className="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-[#09090b] text-base sm:text-lg cursor-pointer hover:bg-gray-50 transition-colors"
+                  className="w-full py-4 text-left flex items-center justify-between gap-4 font-bold text-gray-950 text-base sm:text-lg cursor-pointer hover:text-[#f4b400] transition-colors"
                 >
                   <span className="font-['Hanken_Grotesk',sans-serif]">{faq.question}</span>
-                  <div className={`transition-transform duration-200 ${isOpen ? "rotate-180 text-[#f4b400]" : "text-gray-400"}`}>
-                    <CaretDown weight="bold" className="w-5 h-5" />
-                  </div>
+                  <CaretDown
+                    weight="bold"
+                    className={`w-5 h-5 shrink-0 transition-transform duration-200 ${
+                      isOpen ? "rotate-180 text-[#f4b400]" : "text-gray-400"
+                    }`}
+                  />
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 pt-2 text-gray-600 text-base leading-relaxed bg-white">
+                  <div className="pb-4 text-gray-600 text-base leading-relaxed animate-in fade-in duration-150">
                     {faq.answer}
                   </div>
                 )}
@@ -88,6 +88,7 @@ export default function FaqSection() {
             );
           })}
         </div>
+
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ArrowRight, Lightning, CheckCircle } from "@phosphor-icons/react";
+import { ArrowRight } from "@phosphor-icons/react";
 
 interface CtaSectionProps {
   onOpenDiagnostic: () => void;
@@ -9,56 +9,39 @@ interface CtaSectionProps {
 
 export default function CtaSection({ onOpenDiagnostic }: CtaSectionProps) {
   return (
-    <section className="py-24 sm:py-36 bg-[#f8f9fa] relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-pattern opacity-60 pointer-events-none" />
-
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+    <section className="py-20 sm:py-28 bg-[#f9fafb]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white border border-gray-200 text-[11px] font-mono font-bold uppercase tracking-wider text-gray-700 rounded-sm mb-8 shadow-xs">
-          <span className="w-2 h-2 rounded-full bg-[#f4b400]" />
-          <span>INICIAR DIAGNÓSTICO</span>
-        </div>
-
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#09090b] font-['Hanken_Grotesk',sans-serif] leading-tight mb-6">
+        {/* Title */}
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-950 tracking-tight font-['Hanken_Grotesk',sans-serif] mb-6">
           Empezá por descubrir qué se puede mejorar.
         </h2>
 
-        <p className="text-gray-600 text-lg sm:text-xl mb-10 max-w-xl mx-auto font-medium">
+        {/* Text */}
+        <p className="text-gray-700 text-lg sm:text-xl mb-8 max-w-xl mx-auto">
           No necesitás saber qué sistema, automatización o tecnología necesitás.
         </p>
 
-        {/* Highlight Quote Box */}
-        <div className="bg-white border-2 border-[#09090b] p-8 sm:p-12 mb-10 rounded-sm shadow-xl relative">
-          <p className="text-[#09090b] font-black text-2xl sm:text-3xl lg:text-4xl font-['Hanken_Grotesk',sans-serif] leading-tight">
-            “Nosotros analizamos tu situación y te mostramos dónde existe una oportunidad concreta de mejora.”
+        {/* Highlighted text */}
+        <div className="p-6 sm:p-8 bg-white border border-gray-200 rounded-md max-w-2xl mx-auto shadow-xs mb-8">
+          <p className="text-xl sm:text-2xl font-black text-gray-950 font-['Hanken_Grotesk',sans-serif] leading-snug">
+            Nosotros analizamos tu situación y te mostramos dónde existe una oportunidad concreta de mejora.
           </p>
         </div>
 
-        <p className="text-gray-700 font-semibold text-base sm:text-lg mb-8">
+        <p className="text-gray-700 text-base sm:text-lg mb-8 font-medium">
           Solicitá un diagnóstico inicial sin costo y sin compromiso.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        {/* Button */}
+        <div className="flex justify-center">
           <button
             onClick={onOpenDiagnostic}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#f4b400] hover:bg-[#d9a000] text-black font-black text-base uppercase tracking-wider rounded-sm shadow-md transition transform hover:-translate-y-0.5 cursor-pointer font-['Hanken_Grotesk',sans-serif]"
+            className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#f4b400] hover:bg-[#e0a400] text-gray-950 font-bold text-base rounded-md shadow-sm hover:shadow transition cursor-pointer font-['Hanken_Grotesk',sans-serif]"
           >
-            <Lightning weight="fill" className="w-5 h-5 text-black" />
             <span>Solicitar diagnóstico sin costo</span>
-            <ArrowRight weight="bold" className="w-5 h-5 text-black" />
+            <ArrowRight weight="bold" className="w-5 h-5" />
           </button>
-        </div>
-
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-gray-500 font-mono">
-          <span className="flex items-center gap-1.5">
-            <CheckCircle weight="fill" className="w-4 h-4 text-[#f4b400]" /> 100% SIN COSTO
-          </span>
-          <span className="flex items-center gap-1.5">
-            <CheckCircle weight="fill" className="w-4 h-4 text-[#f4b400]" /> SIN COMPROMISO
-          </span>
-          <span className="flex items-center gap-1.5">
-            <CheckCircle weight="fill" className="w-4 h-4 text-[#f4b400]" /> RESPUESTA DIRECTA
-          </span>
         </div>
 
       </div>
