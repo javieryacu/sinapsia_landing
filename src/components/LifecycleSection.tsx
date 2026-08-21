@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 
 const CONTINUOUS_SERVICES = [
   "Soporte y mantenimiento",
@@ -31,18 +32,22 @@ export default function LifecycleSection() {
           </p>
         </div>
 
-        {/* List of 7 services */}
+        {/* List of 7 services with subtle hover cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl mx-auto mb-12 text-left">
-          {CONTINUOUS_SERVICES.map((item) => (
-            <div
+          {CONTINUOUS_SERVICES.map((item, idx) => (
+            <motion.div
               key={item}
-              className="p-4 bg-[#f9fafb] border border-gray-200 rounded-md flex items-center"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: idx * 0.05 }}
+              className="group p-4 bg-[#f9fafb] hover:bg-white border border-gray-200 hover:border-[#f4b400] rounded-md shadow-xs hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200 flex items-center"
             >
-              <div className="w-2 h-2 rounded-full bg-[#f4b400] mr-3 shrink-0" />
+              <div className="w-2.5 h-2.5 rounded-full bg-[#f4b400] mr-3 shrink-0 group-hover:scale-125 transition-transform duration-200" />
               <span className="font-bold text-gray-900 text-base font-['Hanken_Grotesk',sans-serif]">
                 {item}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 
 const PROBLEMS = [
   "Información duplicada.",
@@ -32,18 +33,22 @@ export default function ProblemSection() {
           </div>
         </div>
 
-        {/* 6 Problem Items */}
+        {/* 6 Problem Items with Dynamic Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-14">
-          {PROBLEMS.map((problem) => (
-            <div
+          {PROBLEMS.map((problem, index) => (
+            <motion.div
               key={problem}
-              className="p-5 sm:p-6 bg-white border border-gray-200 rounded-md shadow-xs flex items-center"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              className="group p-5 sm:p-6 bg-white border border-gray-200 hover:border-[#f4b400] rounded-md shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center cursor-default"
             >
-              <div className="w-2.5 h-2.5 rounded-full bg-[#f4b400] mr-4 shrink-0" />
-              <span className="text-base sm:text-lg font-bold text-gray-900 font-['Hanken_Grotesk',sans-serif]">
+              <div className="w-3 h-3 rounded-full bg-[#f4b400] mr-4 shrink-0 group-hover:scale-125 group-hover:shadow-xs transition-all duration-200" />
+              <span className="text-base sm:text-lg font-bold text-gray-900 group-hover:text-gray-950 font-['Hanken_Grotesk',sans-serif] transition-colors">
                 {problem}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
 

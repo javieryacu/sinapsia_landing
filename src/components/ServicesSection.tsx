@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 
 const SERVICES = [
   {
@@ -37,22 +38,27 @@ export default function ServicesSection() {
           </h2>
         </div>
 
-        {/* 5 Services Grid */}
+        {/* 5 Services Grid with hover effects */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SERVICES.map((srv) => (
-            <div
+          {SERVICES.map((srv, idx) => (
+            <motion.div
               key={srv.title}
-              className="p-8 bg-[#f9fafb] border border-gray-200 rounded-md flex flex-col justify-between"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
+              className="group p-8 bg-[#f9fafb] hover:bg-white border border-gray-200 hover:border-[#f4b400] rounded-md shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
             >
               <div>
-                <h3 className="text-xl font-bold text-gray-950 mb-3 font-['Hanken_Grotesk',sans-serif]">
+                <div className="w-8 h-1 bg-gray-300 group-hover:w-14 group-hover:bg-[#f4b400] transition-all duration-300 mb-6 rounded-full" />
+                <h3 className="text-xl font-bold text-gray-950 group-hover:text-gray-950 mb-3 font-['Hanken_Grotesk',sans-serif] transition-colors">
                   {srv.title}
                 </h3>
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                   {srv.desc}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

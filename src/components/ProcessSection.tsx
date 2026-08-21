@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 
 const STEPS = [
   {
@@ -51,15 +52,19 @@ export default function ProcessSection() {
           </div>
         </div>
 
-        {/* 5 Steps Grid */}
+        {/* 5 Steps Grid with dynamic hover */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          {STEPS.map((step) => (
-            <div
+          {STEPS.map((step, idx) => (
+            <motion.div
               key={step.num}
-              className="p-6 bg-[#f9fafb] border border-gray-200 rounded-md flex flex-col justify-between"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
+              className="group p-6 bg-[#f9fafb] hover:bg-white border border-gray-200 hover:border-[#f4b400] rounded-md shadow-xs hover:shadow-md hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
             >
               <div>
-                <div className="text-2xl font-black text-[#f4b400] mb-3 font-['Hanken_Grotesk',sans-serif]">
+                <div className="text-2xl font-black text-[#f4b400] group-hover:scale-110 origin-left transition-transform duration-200 mb-3 font-['Hanken_Grotesk',sans-serif]">
                   {step.num}
                 </div>
                 <h3 className="text-lg font-bold text-gray-950 mb-3 font-['Hanken_Grotesk',sans-serif]">
@@ -69,7 +74,7 @@ export default function ProcessSection() {
                   {step.desc}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
