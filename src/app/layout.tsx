@@ -1,22 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({
+const hanken = Hanken_Grotesk({
   subsets: ["latin"],
-  variable: "--font-outfit",
-  weight: ["400", "500", "600", "700", "800", "900"],
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-hanken",
   display: "swap",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#f8f9fa",
   width: "device-width",
   initialScale: 1,
 };
@@ -62,8 +55,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${outfit.variable} ${inter.variable} scroll-smooth`}>
-      <body className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-amber-100 selection:text-amber-950">
+    <html lang="es" className={`${hanken.variable} scroll-smooth`}>
+      <body className="min-h-screen bg-[#f8f9fa] text-[#09090b] font-sans antialiased selection:bg-[#f4b400] selection:text-black">
         {children}
       </body>
     </html>

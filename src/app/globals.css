@@ -1,56 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --primary-amber: #e5a918;
-  --primary-amber-hover: #d1940e;
-  --dark-slate: #0f172a;
+  --background: #f8f9fa; /* Blanco carrocería / Off-white */
+  --foreground: #09090b; /* Negro profundo */
+  --primary-amber: #f4b400; /* Amarillo SinapsIA */
+  --primary-amber-hover: #d9a000;
+  --dark-slate: #09090b;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #ffffff;
-  color: #0f172a;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 body {
-  background-color: #ffffff;
-  color: #0f172a;
+  background-color: var(--background);
+  color: var(--foreground);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
-/* Custom subtle patterns and scrollbars */
+/* Industrial Grid Pattern */
 .bg-grid-pattern {
-  background-size: 32px 32px;
+  background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(9, 9, 11, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(9, 9, 11, 0.04) 1px, transparent 1px);
 }
 
 .bg-dots-pattern {
-  background-size: 24px 24px;
-  background-image: radial-gradient(rgba(15, 23, 42, 0.06) 1.2px, transparent 1.2px);
+  background-size: 20px 20px;
+  background-image: radial-gradient(rgba(9, 9, 11, 0.08) 1px, transparent 1px);
 }
 
-/* Glassmorphism light */
+/* Technical Glassmorphism */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  background: rgba(248, 249, 250, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.amber-glow {
-  box-shadow: 0 0 25px -5px rgba(229, 169, 24, 0.3);
-}
-
-.amber-glow-sm {
-  box-shadow: 0 0 15px -3px rgba(229, 169, 24, 0.25);
-}
-
-/* Smooth selection */
 ::selection {
-  background: #fef08a;
-  color: #0f172a;
+  background: var(--primary-amber);
+  color: #000;
 }

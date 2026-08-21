@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, CheckCircle2, ArrowRight, MessageSquare, Send, Sparkles } from "lucide-react";
+import { X, CheckCircle, ArrowRight, WhatsappLogo } from "@phosphor-icons/react";
 import confetti from "canvas-confetti";
 
 interface DiagnosticModalProps {
@@ -36,12 +36,11 @@ export default function DiagnosticModal({ isOpen, onClose }: DiagnosticModalProp
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Trigger celebration confetti
     confetti({
       particleCount: 80,
       spread: 60,
       origin: { y: 0.6 },
-      colors: ["#E5A918", "#0F172A", "#F59E0B", "#10B981"],
+      colors: ["#f4b400", "#09090b", "#ffffff"],
     });
 
     const needsText =
@@ -59,41 +58,33 @@ export default function DiagnosticModal({ isOpen, onClose }: DiagnosticModalProp
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
       <div
-        className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden"
+        className="relative w-full max-w-2xl bg-white rounded-sm shadow-2xl border border-gray-200 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header decoration */}
-        <div className="h-2 bg-gradient-to-r from-slate-900 via-[#E5A918] to-slate-900" />
-
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-full transition-colors"
-          aria-label="Cerrar modal"
+          className="absolute top-4 right-4 p-2 text-gray-400 hover:text-[#09090b] hover:bg-gray-100 rounded-sm transition-colors"
         >
-          <X className="w-5 h-5" />
+          <X weight="bold" className="w-5 h-5" />
         </button>
 
-        <div className="p-6 sm:p-8 max-h-[85vh] overflow-y-auto">
+        <div className="p-8 sm:p-10 max-h-[85vh] overflow-y-auto">
           {!submitted ? (
             <div>
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#E5A918] mb-2">
-                <Sparkles className="w-4 h-4" />
-                <span>Diagnóstico Inicial 100% Sin Costo</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight mb-2">
+              <h3 className="text-2xl sm:text-3xl font-black text-[#09090b] tracking-tight mb-2 font-['Hanken_Grotesk',sans-serif]">
                 Descubrí cómo potenciar tus sistemas
               </h3>
-              <p className="text-slate-600 text-sm sm:text-base mb-6 leading-relaxed">
-                Completá los siguientes datos rápidos. Analizaremos tu situación para mostrarte
-                dónde existe una oportunidad concreta de mejora, sin ningún compromiso.
+              <p className="text-gray-600 text-sm sm:text-base mb-8">
+                Completá los siguientes datos. Analizaremos tu situación para mostrarte
+                dónde existe una oportunidad concreta de mejora, sin costo ni compromiso.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-2 font-['Hanken_Grotesk',sans-serif]">
                       Tu Nombre / Contacto *
                     </label>
                     <input
@@ -102,28 +93,28 @@ export default function DiagnosticModal({ isOpen, onClose }: DiagnosticModalProp
                       placeholder="Ej: Martín Gómez"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#E5A918] focus:ring-2 focus:ring-[#E5A918]/20 text-slate-900 text-sm outline-none transition"
+                      className="w-full px-4 py-3 rounded-sm border border-gray-300 focus:border-[#09090b] focus:ring-1 focus:ring-[#09090b] text-[#09090b] text-sm outline-none transition bg-[#f8f9fa] focus:bg-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-2 font-['Hanken_Grotesk',sans-serif]">
                       Empresa / Rubro
                     </label>
                     <input
                       type="text"
-                      placeholder="Ej: Distribuidora / Consultora"
+                      placeholder="Ej: Consultora / Distribuidora"
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#E5A918] focus:ring-2 focus:ring-[#E5A918]/20 text-slate-900 text-sm outline-none transition"
+                      className="w-full px-4 py-3 rounded-sm border border-gray-300 focus:border-[#09090b] focus:ring-1 focus:ring-[#09090b] text-[#09090b] text-sm outline-none transition bg-[#f8f9fa] focus:bg-white"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
-                    ¿Qué área o desafío te interesa evaluar? (Podés marcar varias)
+                  <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-3 font-['Hanken_Grotesk',sans-serif]">
+                    ¿Qué área te interesa evaluar?
                   </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {NEED_OPTIONS.map((option) => {
                       const isChecked = selectedNeeds.includes(option);
                       return (
@@ -131,20 +122,20 @@ export default function DiagnosticModal({ isOpen, onClose }: DiagnosticModalProp
                           key={option}
                           type="button"
                           onClick={() => toggleNeed(option)}
-                          className={`flex items-start gap-2.5 p-2.5 text-left rounded-xl border text-xs font-medium transition ${
+                          className={`flex items-start gap-3 p-3 text-left rounded-sm border text-sm font-medium transition ${
                             isChecked
-                              ? "bg-amber-50/80 border-[#E5A918] text-slate-950 font-semibold shadow-xs"
-                              : "bg-slate-50/70 border-slate-200/80 text-slate-700 hover:bg-slate-100/70"
+                              ? "bg-[#09090b] border-[#09090b] text-white"
+                              : "bg-[#f8f9fa] border-gray-200 text-gray-700 hover:border-gray-400"
                           }`}
                         >
                           <div
-                            className={`w-4 h-4 mt-0.5 rounded flex items-center justify-center shrink-0 border ${
+                            className={`w-4 h-4 mt-0.5 rounded-sm flex items-center justify-center shrink-0 border ${
                               isChecked
-                                ? "bg-[#E5A918] border-[#E5A918] text-slate-950"
-                                : "border-slate-300 bg-white"
+                                ? "bg-[#f4b400] border-[#f4b400] text-[#09090b]"
+                                : "border-gray-300 bg-white"
                             }`}
                           >
-                            {isChecked && <CheckCircle2 className="w-3.5 h-3.5" />}
+                            {isChecked && <CheckCircle weight="fill" className="w-4 h-4" />}
                           </div>
                           <span>{option}</span>
                         </button>
@@ -154,61 +145,40 @@ export default function DiagnosticModal({ isOpen, onClose }: DiagnosticModalProp
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1.5">
-                    Breve descripción de tus herramientas o dificultad actual (opcional)
+                  <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-2 font-['Hanken_Grotesk',sans-serif]">
+                    Detalles adicionales (opcional)
                   </label>
                   <textarea
                     rows={3}
-                    placeholder="Ej: Usamos Excel y un software contable pero no se comunican, perdemos tiempo cargando pedidos a mano..."
+                    placeholder="Ej: Usamos Excel y un sistema contable pero no se comunican..."
                     value={details}
                     onChange={(e) => setDetails(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#E5A918] focus:ring-2 focus:ring-[#E5A918]/20 text-slate-900 text-sm outline-none transition resize-none"
+                    className="w-full px-4 py-3 rounded-sm border border-gray-300 focus:border-[#09090b] focus:ring-1 focus:ring-[#09090b] text-[#09090b] text-sm outline-none transition resize-none bg-[#f8f9fa] focus:bg-white"
                   />
                 </div>
 
-                <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100">
-                  <div className="text-xs text-slate-500 text-center sm:text-left">
-                    🔒 Sin costo ni compromiso. Respuesta directa de nuestro equipo.
-                  </div>
+                <div className="pt-4">
                   <button
                     type="submit"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#E5A918] hover:bg-[#d4990d] text-slate-950 font-extrabold text-sm rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#f4b400] hover:bg-[#d9a000] text-[#09090b] font-bold uppercase tracking-wider text-sm rounded-sm transition cursor-pointer font-['Hanken_Grotesk',sans-serif]"
                   >
-                    <span>Enviar y Conectar por WhatsApp</span>
-                    <Send className="w-4 h-4" />
+                    <span>Enviar a WhatsApp</span>
+                    <ArrowRight weight="bold" className="w-5 h-5" />
                   </button>
                 </div>
               </form>
             </div>
           ) : (
-            <div className="py-8 text-center space-y-4">
-              <div className="w-16 h-16 bg-amber-100 text-[#E5A918] rounded-full flex items-center justify-center mx-auto shadow-inner">
-                <CheckCircle2 className="w-8 h-8 text-[#E5A918]" />
+            <div className="py-12 text-center space-y-6">
+              <div className="w-20 h-20 bg-[#f8f9fa] border border-gray-200 rounded-sm flex items-center justify-center mx-auto">
+                <WhatsappLogo weight="regular" className="w-10 h-10 text-[#09090b]" />
               </div>
-              <h4 className="text-2xl font-extrabold text-slate-950">¡Solicitud recibida!</h4>
-              <p className="text-slate-600 text-sm max-w-md mx-auto">
-                Te estamos redirigiendo a WhatsApp (<strong>3794 - 552724</strong>) para coordinar
-                el diagnóstico con nuestro equipo técnico.
+              <h4 className="text-3xl font-black text-[#09090b] font-['Hanken_Grotesk',sans-serif]">
+                ¡Redirigiendo a WhatsApp!
+              </h4>
+              <p className="text-gray-600 text-base max-w-md mx-auto">
+                Estamos abriendo tu WhatsApp para conectar directamente con nuestro equipo técnico.
               </p>
-              <div className="pt-4 flex justify-center gap-3">
-                <button
-                  onClick={onClose}
-                  className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm rounded-xl transition"
-                >
-                  Cerrar
-                </button>
-                <a
-                  href={`https://wa.me/5493794552724?text=${encodeURIComponent(
-                    `Hola Sinapsia! Soy ${name || "un cliente"}, solicito diagnóstico sin costo.`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#E5A918] text-slate-950 font-bold text-sm rounded-xl shadow transition"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>Abrir WhatsApp Ahora</span>
-                </a>
-              </div>
             </div>
           )}
         </div>

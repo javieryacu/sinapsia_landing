@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Logo from "./Logo";
-import { MessageCircle, Menu, X, ArrowRight, Sparkles } from "lucide-react";
+import { List, X, ArrowRight, Lightning } from "@phosphor-icons/react";
 
 interface NavbarProps {
   onOpenDiagnostic: () => void;
@@ -26,20 +26,20 @@ export default function Navbar({ onOpenDiagnostic }: NavbarProps) {
     { label: "Criterio", href: "#criterio" },
     { label: "Servicios", href: "#servicios" },
     { label: "Visión", href: "#vision" },
-    { label: "Preguntas Frecuentes", href: "#faq" },
+    { label: "Preguntas", href: "#faq" },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs py-3"
-          : "bg-white/80 backdrop-blur-xs py-4 sm:py-5 border-b border-slate-100"
+          ? "bg-[#f8f9fa]/95 backdrop-blur-md border-b border-gray-200/80 shadow-sm py-3"
+          : "bg-[#f8f9fa]/80 backdrop-blur-sm py-4 sm:py-5 border-b border-gray-100"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
-        <a href="#" className="group transition-transform active:scale-98">
+        <a href="#" className="group transition-transform active:scale-95">
           <Logo variant="header" />
         </a>
 
@@ -49,7 +49,7 @@ export default function Navbar({ onOpenDiagnostic }: NavbarProps) {
             <a
               key={link.href}
               href={link.href}
-              className="text-xs font-bold text-slate-700 hover:text-[#E5A918] transition-colors uppercase tracking-wider"
+              className="text-[13px] font-bold text-[#09090b] hover:text-[#f4b400] transition-colors uppercase tracking-widest font-['Hanken_Grotesk',sans-serif]"
             >
               {link.label}
             </a>
@@ -58,22 +58,11 @@ export default function Navbar({ onOpenDiagnostic }: NavbarProps) {
 
         {/* Desktop Actions */}
         <div className="hidden sm:flex items-center gap-3">
-          <a
-            href="https://wa.me/5493794552724?text=Hola%20Sinapsia,%20quisiera%20hacer%20una%20consulta"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-slate-800 hover:text-emerald-600 hover:bg-slate-50 rounded-xl transition"
-            title="Llamar o escribir al 3794 - 552724"
-          >
-            <MessageCircle className="w-4 h-4 text-emerald-600" />
-            <span>3794 - 552724</span>
-          </a>
-
           <button
             onClick={onOpenDiagnostic}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#E5A918] hover:bg-[#d4990d] text-slate-950 text-xs font-extrabold rounded-xl shadow-xs hover:shadow-md transition-all transform hover:-translate-y-0.5 cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#f4b400] hover:bg-[#d9a000] text-black text-[13px] font-bold rounded-sm shadow-sm hover:shadow transition-all font-['Hanken_Grotesk',sans-serif] uppercase tracking-wider cursor-pointer"
           >
-            <Sparkles className="w-3.5 h-3.5" />
+            <Lightning weight="fill" className="w-3.5 h-3.5" />
             <span>Solicitar diagnóstico</span>
           </button>
         </div>
@@ -82,57 +71,47 @@ export default function Navbar({ onOpenDiagnostic }: NavbarProps) {
         <div className="flex items-center gap-2 lg:hidden">
           <button
             onClick={onOpenDiagnostic}
-            className="px-3 py-1.5 bg-[#E5A918] text-slate-950 text-xs font-bold rounded-lg shadow-xs sm:hidden"
+            className="px-4 py-2 bg-[#f4b400] text-black text-xs font-bold uppercase tracking-wider rounded-sm shadow-sm sm:hidden"
           >
             Diagnóstico
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded-lg transition"
+            className="p-2 text-black hover:bg-gray-200 rounded-sm transition"
             aria-label="Abrir menú"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X weight="bold" className="w-6 h-6" /> : <List weight="bold" className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-slate-200 shadow-xl px-4 py-6 space-y-4 animate-in slide-in-from-top-2 duration-200">
+        <div className="lg:hidden bg-[#f8f9fa] border-b border-gray-200 shadow-xl px-4 py-6 space-y-4 animate-in slide-in-from-top-2 duration-200">
           <nav className="flex flex-col space-y-3">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-sm font-bold text-slate-800 hover:text-[#E5A918] py-1.5 border-b border-slate-50 transition"
+                className="text-sm font-bold text-[#09090b] hover:text-[#f4b400] py-2 border-b border-gray-200 transition uppercase tracking-wider font-['Hanken_Grotesk',sans-serif]"
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          <div className="pt-2 space-y-2.5">
-            <a
-              href="https://wa.me/5493794552724?text=Hola%20Sinapsia,%20quisiera%20hacer%20una%20consulta"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-2 py-3 bg-slate-100 text-slate-900 text-sm font-bold rounded-xl border border-slate-200"
-            >
-              <MessageCircle className="w-4 h-4 text-emerald-600" />
-              <span>WhatsApp: 3794 - 552724</span>
-            </a>
-
+          <div className="pt-2">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenDiagnostic();
               }}
-              className="w-full inline-flex items-center justify-center gap-2 py-3 bg-[#E5A918] text-slate-950 text-sm font-extrabold rounded-xl shadow-md"
+              className="w-full inline-flex items-center justify-center gap-2 py-3.5 bg-[#f4b400] text-black text-sm font-bold uppercase tracking-wider rounded-sm shadow-sm"
             >
-              <Sparkles className="w-4 h-4" />
+              <Lightning weight="fill" className="w-4 h-4" />
               <span>Solicitar diagnóstico sin costo</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight weight="bold" className="w-4 h-4" />
             </button>
           </div>
         </div>
