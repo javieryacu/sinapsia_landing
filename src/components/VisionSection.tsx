@@ -7,28 +7,9 @@ export default function VisionSection() {
 
   return (
     <section id="vision" className="py-20 sm:py-28 bg-[#f9fafb] border-b border-gray-200">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Block 1: No reemplazamos tus sistemas */}
-        <div className="text-center space-y-6">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-950 tracking-tight font-['Hanken_Grotesk',sans-serif]">
-            No reemplazamos tus sistemas. Los hacemos más inteligentes.
-          </h2>
-
-          <div className="space-y-4 text-gray-700 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            <p className="font-semibold text-gray-900">
-              Antes de recomendar un reemplazo, analizamos lo que ya tenés.
-            </p>
-            <p>
-              Muchas veces la mejor solución no es empezar de cero, sino aprovechar mejor la inversión tecnológica existente, mejorarla y conectarla con nuevas capacidades.
-            </p>
-            <p>
-              Y cuando reemplazar o desarrollar algo nuevo realmente tiene sentido, también lo hacemos.
-            </p>
-          </div>
-        </div>
-
-        {/* Block 2: Una sola visión para toda tu tecnología */}
+        {/* Una sola visión para toda tu tecnología */}
         <div className="p-8 sm:p-12 bg-white border border-gray-200 rounded-md text-center shadow-xs">
           <h2 className="text-3xl sm:text-4xl font-black text-gray-950 tracking-tight font-['Hanken_Grotesk',sans-serif] mb-6">
             Una sola visión para toda tu tecnología.
