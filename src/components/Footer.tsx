@@ -18,18 +18,18 @@ export default function Footer({ onOpenDiagnostic }: FooterProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-gray-200">
           
-          {/* Brand Logo & Vehicle graphic */}
+          {/* Brand Logo & Contact Address */}
           <div className="md:col-span-8 space-y-4">
-            <div className="p-6 sm:p-8 bg-[#f9fafb] border border-gray-200 rounded-md max-w-md">
+            <address className="not-italic p-6 sm:p-8 bg-[#f9fafb] border border-gray-200 rounded-md max-w-md block">
               <Logo variant="full" showContact={true} />
-            </div>
+            </address>
           </div>
 
           {/* Navigation Links */}
           <div className="md:col-span-4 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-900 font-['Hanken_Grotesk',sans-serif]">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-900 font-['Hanken_Grotesk',sans-serif]">
               Navegación
-            </h4>
+            </h3>
             <ul className="space-y-2.5 text-sm font-medium text-gray-600">
               <li>
                 <a href="#problema" className="hover:text-gray-950 transition-colors">

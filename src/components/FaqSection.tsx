@@ -70,7 +70,7 @@ export default function FaqSection() {
                   onClick={() => toggle(idx)}
                   className="w-full py-4 text-left flex items-center justify-between gap-4 font-bold text-gray-950 text-base sm:text-lg cursor-pointer hover:text-[#f4b400] transition-colors"
                 >
-                  <span className="font-['Hanken_Grotesk',sans-serif]">{faq.question}</span>
+                  <h3 className="font-['Hanken_Grotesk',sans-serif] text-base sm:text-lg font-bold text-gray-950 inline m-0 p-0">{faq.question}</h3>
                   <CaretDown
                     weight="bold"
                     className={`w-5 h-5 shrink-0 transition-transform duration-200 ${
