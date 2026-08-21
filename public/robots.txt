@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://sinapsia.com.ar/sitemap.xml
