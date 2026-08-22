@@ -10,13 +10,16 @@ interface HeroProps {
 
 export default function Hero({ onOpenDiagnostic }: HeroProps) {
   return (
-    <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-32 bg-[#f8f9fa] border-b border-gray-200 overflow-hidden">
+    <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-32 bg-[#e8ebef] border-b border-gray-300 overflow-hidden">
       
-      {/* Background: Direct Vector Graphics with Pure Car-Door White & Delicate Yellow Technical Lines */}
+      {/* Background: Direct Vector Graphics with Pearlescent Automotive Bodywork & Yellow Technical Lines */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
         
-        {/* Subtle Car-door Pearlescent Diffuse Glow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-[#f8f9fa] to-[#f1f3f5]" />
+        {/* Slightly Darker Automotive Grayish Diffuse Glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#edf0f4] via-[#e4e7eb] to-[#dbe0e6]" />
+        
+        {/* Soft Specular Light Center Accent */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-white/40 blur-[90px] rounded-full" />
 
         {/* Embedded Vector Lines for Absolute Fidelity & Crispness */}
         <svg
@@ -28,22 +31,22 @@ export default function Hero({ onOpenDiagnostic }: HeroProps) {
           <defs>
             {/* Fine Gray Dot Grid */}
             <pattern id="carDoorGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <circle cx="20" cy="20" r="0.75" fill="#09090b" fillOpacity="0.04" />
+              <circle cx="20" cy="20" r="0.85" fill="#09090b" fillOpacity="0.06" />
             </pattern>
 
             {/* Glowing Yellow Line Gradient */}
             <linearGradient id="techYellowLine" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#f4b400" stopOpacity="0" />
-              <stop offset="25%" stopColor="#f4b400" stopOpacity="0.75" />
-              <stop offset="50%" stopColor="#e5a918" stopOpacity="0.95" />
-              <stop offset="75%" stopColor="#f4b400" stopOpacity="0.75" />
+              <stop offset="25%" stopColor="#f4b400" stopOpacity="0.85" />
+              <stop offset="50%" stopColor="#e5a918" stopOpacity="1" />
+              <stop offset="75%" stopColor="#f4b400" stopOpacity="0.85" />
               <stop offset="100%" stopColor="#f4b400" stopOpacity="0" />
             </linearGradient>
 
             <linearGradient id="techYellowVertical" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#f4b400" stopOpacity="0" />
-              <stop offset="30%" stopColor="#f4b400" stopOpacity="0.5" />
-              <stop offset="70%" stopColor="#f4b400" stopOpacity="0.6" />
+              <stop offset="30%" stopColor="#f4b400" stopOpacity="0.6" />
+              <stop offset="70%" stopColor="#f4b400" stopOpacity="0.7" />
               <stop offset="100%" stopColor="#f4b400" stopOpacity="0" />
             </linearGradient>
           </defs>
@@ -54,47 +57,47 @@ export default function Hero({ onOpenDiagnostic }: HeroProps) {
           {/* Delicate Technical Lines (Yellow Accent) */}
           <g>
             {/* Top Horizon Line */}
-            <line x1="100" y1="140" x2="1820" y2="140" stroke="url(#techYellowLine)" strokeWidth="1.2" />
-            <circle cx="280" cy="140" r="2.5" fill="#f4b400" />
-            <circle cx="960" cy="140" r="2" fill="#f4b400" />
-            <circle cx="1640" cy="140" r="2.5" fill="#f4b400" />
+            <line x1="100" y1="140" x2="1820" y2="140" stroke="url(#techYellowLine)" strokeWidth="1.3" />
+            <circle cx="280" cy="140" r="3" fill="#f4b400" />
+            <circle cx="960" cy="140" r="2.5" fill="#f4b400" />
+            <circle cx="1640" cy="140" r="3" fill="#f4b400" />
 
             {/* Circuit Trace Left Side */}
             <path
               d="M 150 320 L 300 320 L 360 380 L 480 380"
               fill="none"
               stroke="url(#techYellowLine)"
-              strokeWidth="1.2"
+              strokeWidth="1.3"
             />
-            <circle cx="300" cy="320" r="2.5" fill="#f4b400" />
-            <circle cx="360" cy="380" r="2" fill="#09090b" fillOpacity="0.2" />
-            <circle cx="480" cy="380" r="3" fill="#f4b400" />
+            <circle cx="300" cy="320" r="3" fill="#f4b400" />
+            <circle cx="360" cy="380" r="2.5" fill="#09090b" fillOpacity="0.3" />
+            <circle cx="480" cy="380" r="3.5" fill="#f4b400" />
 
             {/* Circuit Trace Right Side */}
             <path
               d="M 1440 600 L 1580 600 L 1640 660 L 1780 660"
               fill="none"
               stroke="url(#techYellowLine)"
-              strokeWidth="1.2"
+              strokeWidth="1.3"
             />
-            <circle cx="1440" cy="600" r="3" fill="#f4b400" />
-            <circle cx="1580" cy="600" r="2" fill="#09090b" fillOpacity="0.2" />
-            <circle cx="1640" cy="660" r="2.5" fill="#f4b400" />
+            <circle cx="1440" cy="600" r="3.5" fill="#f4b400" />
+            <circle cx="1580" cy="600" r="2.5" fill="#09090b" fillOpacity="0.3" />
+            <circle cx="1640" cy="660" r="3" fill="#f4b400" />
 
             {/* Bottom Horizon Line (Inspired by the car door graphic yellow separator) */}
-            <line x1="180" y1="960" x2="1740" y2="960" stroke="url(#techYellowLine)" strokeWidth="1.5" />
-            <line x1="180" y1="964" x2="520" y2="964" stroke="#f4b400" strokeWidth="0.75" strokeOpacity="0.4" />
-            <line x1="1400" y1="964" x2="1740" y2="964" stroke="#f4b400" strokeWidth="0.75" strokeOpacity="0.4" />
+            <line x1="180" y1="960" x2="1740" y2="960" stroke="url(#techYellowLine)" strokeWidth="1.8" />
+            <line x1="180" y1="965" x2="520" y2="965" stroke="#f4b400" strokeWidth="1" strokeOpacity="0.5" />
+            <line x1="1400" y1="965" x2="1740" y2="965" stroke="#f4b400" strokeWidth="1" strokeOpacity="0.5" />
 
             {/* Subtle Vertical Coordinate Lines */}
-            <line x1="160" y1="200" x2="160" y2="880" stroke="url(#techYellowVertical)" strokeWidth="0.75" strokeDasharray="6 6" />
-            <line x1="1760" y1="200" x2="1760" y2="880" stroke="url(#techYellowVertical)" strokeWidth="0.75" strokeDasharray="6 6" />
+            <line x1="160" y1="200" x2="160" y2="880" stroke="url(#techYellowVertical)" strokeWidth="0.85" strokeDasharray="6 6" />
+            <line x1="1760" y1="200" x2="1760" y2="880" stroke="url(#techYellowVertical)" strokeWidth="0.85" strokeDasharray="6 6" />
 
             {/* Corner Precision Marks */}
-            <path d="M 60 60 L 85 60 M 60 60 L 60 85" stroke="#f4b400" strokeWidth="1.2" strokeOpacity="0.6" />
-            <path d="M 1860 60 L 1835 60 M 1860 60 L 1860 85" stroke="#f4b400" strokeWidth="1.2" strokeOpacity="0.6" />
-            <path d="M 60 1020 L 85 1020 M 60 1020 L 60 995" stroke="#f4b400" strokeWidth="1.2" strokeOpacity="0.6" />
-            <path d="M 1860 1020 L 1835 1020 M 1860 1020 L 1860 995" stroke="#f4b400" strokeWidth="1.2" strokeOpacity="0.6" />
+            <path d="M 60 60 L 85 60 M 60 60 L 60 85" stroke="#f4b400" strokeWidth="1.3" strokeOpacity="0.75" />
+            <path d="M 1860 60 L 1835 60 M 1860 60 L 1860 85" stroke="#f4b400" strokeWidth="1.3" strokeOpacity="0.75" />
+            <path d="M 60 1020 L 85 1020 M 60 1020 L 60 995" stroke="#f4b400" strokeWidth="1.3" strokeOpacity="0.75" />
+            <path d="M 1860 1020 L 1835 1020 M 1860 1020 L 1860 995" stroke="#f4b400" strokeWidth="1.3" strokeOpacity="0.75" />
           </g>
         </svg>
       </div>
@@ -106,13 +109,13 @@ export default function Hero({ onOpenDiagnostic }: HeroProps) {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gray-200 shadow-xs text-xs sm:text-sm font-bold text-gray-900 uppercase tracking-wider mb-8"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 border border-gray-300 shadow-xs text-xs sm:text-sm font-bold text-gray-900 uppercase tracking-wider mb-8"
         >
           <span className="w-2 h-2 rounded-full bg-[#f4b400] animate-pulse" />
           <span>Software</span>
-          <span className="text-gray-300">·</span>
+          <span className="text-gray-400">·</span>
           <span>IA</span>
-          <span className="text-gray-300">·</span>
+          <span className="text-gray-400">·</span>
           <span>Automatización</span>
         </motion.div>
 
@@ -126,7 +129,7 @@ export default function Hero({ onOpenDiagnostic }: HeroProps) {
           Mejoramos, automatizamos y hacemos más inteligentes tus sistemas.
         </motion.h1>
 
-        {/* Sequence Content with Exact Copy & Perfect Car-Door Contrast */}
+        {/* Sequence Content with Exact Copy & Enhanced Automotive Contrast */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -148,11 +151,11 @@ export default function Hero({ onOpenDiagnostic }: HeroProps) {
             Antes de recomendar un reemplazo, analizamos lo que ya tenés.
           </p>
 
-          <p className="text-[#374151] text-sm sm:text-base">
+          <p className="text-[#272f3d] text-sm sm:text-base">
             Muchas veces la mejor solución no es empezar de cero, sino aprovechar mejor la inversión tecnológica existente, mejorarla y conectarla con nuevas capacidades.
           </p>
 
-          <p className="text-[#374151] text-sm sm:text-base">
+          <p className="text-[#272f3d] text-sm sm:text-base">
             Optimizamos sistemas existentes, conectamos herramientas, automatizamos procesos, incorporamos inteligencia artificial y desarrollamos nuevas soluciones cuando realmente hace falta.
           </p>
 
