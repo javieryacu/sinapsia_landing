@@ -1,0 +1,88 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Car bodywork pearlescent grayish lighting gradient -->
+    <linearGradient id="carBodyPaint" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#f3f4f6" />
+      <stop offset="35%" stopColor="#ebedf0" />
+      <stop offset="70%" stopColor="#e2e5e9" />
+      <stop offset="100%" stopColor="#ebeef2" />
+    </linearGradient>
+
+    <!-- Subtle studio light reflection on car curvature -->
+    <radialGradient id="bodyworkReflection" cx="50%" cy="30%" r="75%" fx="50%" fy="20%">
+      <stop offset="0%" stopColor="#ffffff" stopOpacity="0.85" />
+      <stop offset="50%" stopColor="#ebedf0" stopOpacity="0.4" />
+      <stop offset="100%" stopColor="#dce0e5" stopOpacity="0.8" />
+    </radialGradient>
+
+    <!-- Subtle yellow laser line gradient -->
+    <linearGradient id="yellowLineGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#f4b400" stopOpacity="0" />
+      <stop offset="20%" stopColor="#f4b400" stopOpacity="0.75" />
+      <stop offset="50%" stopColor="#e5a918" stopOpacity="0.9" />
+      <stop offset="80%" stopColor="#f4b400" stopOpacity="0.75" />
+      <stop offset="100%" stopColor="#f4b400" stopOpacity="0" />
+    </linearGradient>
+
+    <!-- Fine vertical line gradient -->
+    <linearGradient id="yellowLineVertical" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stopColor="#f4b400" stopOpacity="0" />
+      <stop offset="30%" stopColor="#f4b400" stopOpacity="0.6" />
+      <stop offset="70%" stopColor="#e5a918" stopOpacity="0.7" />
+      <stop offset="100%" stopColor="#f4b400" stopOpacity="0" />
+    </linearGradient>
+
+    <!-- Delicate Technical Grid -->
+    <pattern id="precisionTechGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#09090b" stroke-width="0.75" stroke-opacity="0.04" />
+      <path d="M 30 28 L 30 32 M 28 30 L 32 30" fill="none" stroke="#f4b400" stroke-width="0.8" stroke-opacity="0.25" />
+    </pattern>
+  </defs>
+
+  <!-- Base Car Bodywork Layer -->
+  <rect width="1920" height="1080" fill="url(#carBodyPaint)" />
+  <rect width="1920" height="1080" fill="url(#bodyworkReflection)" />
+  <rect width="1920" height="1080" fill="url(#precisionTechGrid)" />
+
+  <!-- Delicate Yellow Technical Accent Lines (Automotive & Synaptic Engineering) -->
+  <g opacity="0.85">
+    <!-- Top horizon guide line -->
+    <line x1="120" y1="180" x2="1800" y2="180" stroke="url(#yellowLineGlow)" stroke-width="1.5" />
+    <circle cx="280" cy="180" r="3" fill="#f4b400" />
+    <circle cx="960" cy="180" r="2.5" fill="#f4b400" />
+    <circle cx="1640" cy="180" r="3" fill="#f4b400" />
+
+    <!-- Circuit trace 1 - Top Right to Center -->
+    <path d="M 1750 120 L 1400 120 L 1320 200 L 1050 200" fill="none" stroke="url(#yellowLineGlow)" stroke-width="1.2" stroke-dasharray="8 4" />
+    <circle cx="1320" cy="200" r="2.5" fill="#f4b400" />
+    <circle cx="1050" cy="200" r="3.5" fill="#f4b400" />
+
+    <!-- Circuit trace 2 - Left Side Synaptic Node -->
+    <path d="M 160 380 L 320 380 L 380 440 L 520 440" fill="none" stroke="url(#yellowLineGlow)" stroke-width="1.2" />
+    <circle cx="320" cy="380" r="3" fill="#f4b400" />
+    <circle cx="380" cy="440" r="2" fill="#09090b" fill-opacity="0.4" />
+    <circle cx="520" cy="440" r="3.5" fill="#f4b400" />
+
+    <!-- Circuit trace 3 - Right Side Architecture Stream -->
+    <path d="M 1400 620 L 1580 620 L 1660 700 L 1820 700" fill="none" stroke="url(#yellowLineGlow)" stroke-width="1.2" />
+    <circle cx="1400" cy="620" r="3.5" fill="#f4b400" />
+    <circle cx="1580" cy="620" r="2.5" fill="#f4b400" />
+    <circle cx="1660" cy="700" r="3" fill="#f4b400" />
+
+    <!-- Bottom subtle divider line (Matching vehicular graphics line) -->
+    <line x1="200" y1="920" x2="1720" y2="920" stroke="url(#yellowLineGlow)" stroke-width="1.8" />
+    <line x1="200" y1="926" x2="600" y2="926" stroke="#f4b400" stroke-width="1" stroke-opacity="0.4" />
+    <line x1="1320" y1="926" x2="1720" y2="926" stroke="#f4b400" stroke-width="1" stroke-opacity="0.4" />
+
+    <!-- Vertical precision coordinate lines -->
+    <line x1="160" y1="260" x2="160" y2="820" stroke="url(#yellowLineVertical)" stroke-width="1" stroke-dasharray="6 6" />
+    <line x1="1760" y1="260" x2="1760" y2="820" stroke="url(#yellowLineVertical)" stroke-width="1" stroke-dasharray="6 6" />
+    <line x1="960" y1="100" x2="960" y2="980" stroke="url(#yellowLineVertical)" stroke-width="0.75" stroke-opacity="0.35" stroke-dasharray="4 8" />
+
+    <!-- Minimal corner registration marks -->
+    <path d="M 80 80 L 110 80 M 80 80 L 80 110" stroke="#f4b400" stroke-width="1.5" stroke-opacity="0.7" />
+    <path d="M 1840 80 L 1810 80 M 1840 80 L 1840 110" stroke="#f4b400" stroke-width="1.5" stroke-opacity="0.7" />
+    <path d="M 80 1000 L 110 1000 M 80 1000 L 80 970" stroke="#f4b400" stroke-width="1.5" stroke-opacity="0.7" />
+    <path d="M 1840 1000 L 1810 1000 M 1840 1000 L 1840 970" stroke="#f4b400" stroke-width="1.5" stroke-opacity="0.7" />
+  </g>
+</svg>
