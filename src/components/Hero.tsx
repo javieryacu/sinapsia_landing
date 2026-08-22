@@ -10,11 +10,11 @@ interface HeroProps {
 
 export default function Hero({ onOpenDiagnostic }: HeroProps) {
   return (
-    <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-32 bg-[#ebedf0] bg-[url('/hero-bg.svg')] bg-cover bg-center border-b border-gray-300/80 overflow-hidden">
-      {/* Soft Ambient Light Glow in Center */}
+    <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-32 bg-[#fafbfc] bg-[url('/hero-bg.svg')] bg-cover bg-center border-b border-gray-100 overflow-hidden">
+      {/* Soft Luminous Ambient Light */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[400px] bg-white/60 blur-[100px] rounded-full" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#f4b400]/10 blur-[90px] rounded-full" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-white/70 blur-[110px] rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[300px] bg-[#f4b400]/8 blur-[90px] rounded-full" />
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -24,13 +24,13 @@ export default function Hero({ onOpenDiagnostic }: HeroProps) {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-xs border border-gray-300 shadow-xs text-xs sm:text-sm font-bold text-gray-900 uppercase tracking-wider mb-8"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gray-200 shadow-xs text-xs sm:text-sm font-bold text-gray-900 uppercase tracking-wider mb-8"
         >
           <span className="w-2 h-2 rounded-full bg-[#f4b400] animate-pulse" />
           <span>Software</span>
-          <span className="text-gray-400">·</span>
+          <span className="text-gray-300">·</span>
           <span>IA</span>
-          <span className="text-gray-400">·</span>
+          <span className="text-gray-300">·</span>
           <span>Automatización</span>
         </motion.div>
 
