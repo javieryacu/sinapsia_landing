@@ -47,7 +47,7 @@ export const manualData: Module[] = [
               <h4 className="font-bold text-[#09090b] mb-2">Slogan</h4>
               <p className="text-lg italic text-gray-800">"Creamos la solución tecnológica que tu empresa necesita."</p>
               <h4 className="font-bold text-[#09090b] mt-4 mb-2">Propuesta conceptual</h4>
-              <p className="text-lg italic text-gray-800">"No reemplazamos tus sistemas. Los hacemos más inteligentes."</p>
+              <p className="text-lg italic text-gray-800">"Aprovechamos los sistemas que ya tenés. Desarrollamos los que te faltan."</p>
             </div>
           </div>
         )
