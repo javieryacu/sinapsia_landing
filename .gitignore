@@ -19,6 +19,7 @@
 
 # production
 /build
+/sinapsia_hostinger/
 
 # misc
 .DS_Store
