@@ -140,20 +140,16 @@ export default function Hero({ onOpenDiagnostic }: HeroProps) {
           {/* Integrated Statement */}
           <div className="py-1">
             <h2 className="text-xl sm:text-2xl font-black text-[#09090b] tracking-tight font-['Hanken_Grotesk',sans-serif]">
-              A veces, eso significa hacer <span className="relative inline-block text-[#09090b] underline decoration-[#f4b400] decoration-4 underline-offset-4">más inteligentes tus sistemas</span> sin reemplazarlos.
+              Aprovechamos los sistemas que ya tenés. <span className="relative inline-block text-[#09090b] underline decoration-[#f4b400] decoration-4 underline-offset-4">Desarrollamos los que te faltan.</span>
             </h2>
           </div>
-
-          <p className="text-[#111827] font-semibold">
-            Otras veces, significa desarrollar algo completamente nuevo.
-          </p>
 
           <p className="text-[#272f3d] text-xs sm:text-sm">
             Muchas veces la mejor solución no es empezar de cero, sino aprovechar mejor la inversión tecnológica existente, mejorarla y conectarla con nuevas capacidades.
           </p>
 
           <p className="text-[#272f3d] text-xs sm:text-sm">
-            Optimizamos sistemas existentes, conectamos herramientas, automatizamos procesos, incorporamos inteligencia artificial y desarrollamos nuevas soluciones cuando realmente hace falta.
+            Optimizamos sistemas existentes, conectamos herramientas, automatizamos procesos, incorporamos inteligencia artificial y creamos nuevas soluciones cuando realmente hace falta.
           </p>
         </motion.div>
 
