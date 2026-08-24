@@ -116,26 +116,11 @@ export default function Hero({ onOpenDiagnostic }: HeroProps) {
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         
-        {/* Brand Slogan */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/95 border border-gray-300 shadow-2xs text-xs sm:text-sm font-bold text-gray-900 uppercase tracking-wider mb-6"
-        >
-          <span className="w-2 h-2 rounded-full bg-[#f4b400] animate-pulse" />
-          <span>Software</span>
-          <span className="text-gray-400">·</span>
-          <span>IA</span>
-          <span className="text-gray-400">·</span>
-          <span>Automatización</span>
-        </motion.div>
-
         {/* Main Title */}
         <motion.h1
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          transition={{ duration: 0.5 }}
           className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#09090b] tracking-tight leading-[1.15] mb-6 font-['Hanken_Grotesk',sans-serif]"
         >
           Creamos la solución tecnológica que tu empresa necesita.
