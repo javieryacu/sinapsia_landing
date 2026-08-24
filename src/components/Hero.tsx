@@ -126,7 +126,7 @@ export default function Hero({ onOpenDiagnostic }: HeroProps) {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#09090b] tracking-tight leading-[1.12] mb-8 font-['Hanken_Grotesk',sans-serif]"
         >
-          Mejoramos, automatizamos y hacemos más inteligentes tus sistemas.
+          Creamos la solución tecnológica que tu empresa necesita.
         </motion.h1>
 
         {/* Sequence Content with Exact Copy & Enhanced Automotive Contrast */}
@@ -143,12 +143,12 @@ export default function Hero({ onOpenDiagnostic }: HeroProps) {
           {/* Integrated Statement */}
           <div className="py-2">
             <h2 className="text-2xl sm:text-3xl font-black text-[#09090b] tracking-tight font-['Hanken_Grotesk',sans-serif]">
-              No reemplazamos tus sistemas. <span className="relative inline-block text-[#09090b] underline decoration-[#f4b400] decoration-4 underline-offset-4">Los hacemos más inteligentes.</span>
+              A veces, eso significa hacer <span className="relative inline-block text-[#09090b] underline decoration-[#f4b400] decoration-4 underline-offset-4">más inteligentes tus sistemas</span> sin reemplazarlos.
             </h2>
           </div>
 
-          <p className="text-[#111827] text-base sm:text-lg">
-            Antes de recomendar un reemplazo, analizamos lo que ya tenés.
+          <p className="text-[#111827] text-base sm:text-lg font-semibold">
+            Otras veces, significa desarrollar algo completamente nuevo.
           </p>
 
           <p className="text-[#272f3d] text-sm sm:text-base">
@@ -157,10 +157,6 @@ export default function Hero({ onOpenDiagnostic }: HeroProps) {
 
           <p className="text-[#272f3d] text-sm sm:text-base">
             Optimizamos sistemas existentes, conectamos herramientas, automatizamos procesos, incorporamos inteligencia artificial y desarrollamos nuevas soluciones cuando realmente hace falta.
-          </p>
-
-          <p className="text-[#09090b] text-sm sm:text-base font-semibold">
-            Y cuando reemplazar o desarrollar algo nuevo realmente tiene sentido, también lo hacemos.
           </p>
         </motion.div>
 
