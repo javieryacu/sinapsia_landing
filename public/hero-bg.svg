@@ -2,176 +2,111 @@
   <defs>
     <!-- Base Satin Metallic Bodywork Gradient -->
     <linearGradient id="bodyworkSatin" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stopColor="#f3f5f8" />
-      <stop offset="35%" stopColor="#e9ecef" />
+      <stop offset="0%" stopColor="#f4f6f8" />
+      <stop offset="35%" stopColor="#ebeef2" />
       <stop offset="70%" stopColor="#e2e6eb" />
       <stop offset="100%" stopColor="#e8ebf0" />
     </linearGradient>
 
     <!-- Center Specular Ambient Light -->
-    <radialGradient id="centerHighlight" cx="50%" cy="40%" r="65%">
-      <stop offset="0%" stopColor="#ffffff" stopOpacity="0.85" />
-      <stop offset="45%" stopColor="#f4f6f9" stopOpacity="0.4" />
+    <radialGradient id="centerHighlight" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+      <stop offset="50%" stopColor="#f4f6f9" stopOpacity="0.4" />
       <stop offset="100%" stopColor="#e2e6eb" stopOpacity="0" />
     </radialGradient>
 
-    <!-- Golden Amber Laser Glow -->
-    <linearGradient id="amberGlowH" x1="0%" y1="0%" x2="100%" y2="0%">
+    <!-- Glowing Horizontal Amber Bus Lines -->
+    <linearGradient id="hBusFull" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stopColor="#f4b400" stopOpacity="0" />
-      <stop offset="20%" stopColor="#f4b400" stopOpacity="0.8" />
-      <stop offset="50%" stopColor="#e5a918" stopOpacity="1" />
-      <stop offset="80%" stopColor="#f4b400" stopOpacity="0.8" />
+      <stop offset="15%" stopColor="#f4b400" stopOpacity="0.8" />
+      <stop offset="50%" stopColor="#e5a918" stopOpacity="0.95" />
+      <stop offset="85%" stopColor="#f4b400" stopOpacity="0.8" />
       <stop offset="100%" stopColor="#f4b400" stopOpacity="0" />
     </linearGradient>
 
-    <linearGradient id="amberSynapseLeft" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stopColor="#f4b400" stopOpacity="0.1" />
-      <stop offset="50%" stopColor="#f4b400" stopOpacity="0.9" />
-      <stop offset="100%" stopColor="#d99b00" stopOpacity="0.3" />
+    <linearGradient id="hBusLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#f4b400" stopOpacity="0.9" />
+      <stop offset="60%" stopColor="#f4b400" stopOpacity="0.7" />
+      <stop offset="100%" stopColor="#f4b400" stopOpacity="0" />
     </linearGradient>
 
-    <linearGradient id="amberSynapseRight" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stopColor="#f4b400" stopOpacity="0.1" />
-      <stop offset="50%" stopColor="#f4b400" stopOpacity="0.9" />
-      <stop offset="100%" stopColor="#d99b00" stopOpacity="0.3" />
+    <linearGradient id="hBusRight" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stopColor="#f4b400" stopOpacity="0.9" />
+      <stop offset="60%" stopColor="#f4b400" stopOpacity="0.7" />
+      <stop offset="100%" stopColor="#f4b400" stopOpacity="0" />
     </linearGradient>
 
     <!-- Micro Precision Tech Grid -->
     <pattern id="precisionGrid" width="48" height="48" patternUnits="userSpaceOnUse">
       <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#09090b" stroke-width="0.5" stroke-opacity="0.035" />
-      <circle cx="48" cy="0" r="0.75" fill="#f4b400" fill-opacity="0.25" />
+      <circle cx="48" cy="0" r="0.7" fill="#f4b400" fill-opacity="0.2" />
     </pattern>
-
-    <!-- Synaptic Halo Filters -->
-    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="6" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-
-    <filter id="wideGlow" x="-100%" y="-100%" width="300%" height="300%">
-      <feGaussianBlur stdDeviation="14" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
   </defs>
 
-  <!-- 1. Base Car Bodywork & Grid Layers -->
+  <!-- 1. Background Layers -->
   <rect width="1920" height="1080" fill="url(#bodyworkSatin)" />
   <rect width="1920" height="1080" fill="url(#centerHighlight)" />
   <rect width="1920" height="1080" fill="url(#precisionGrid)" />
 
-  <!-- 2. Ambient Soft Synaptic Glow Areas (Left & Right Wings) -->
-  <circle cx="280" cy="420" r="220" fill="#f4b400" fill-opacity="0.07" filter="url(#wideGlow)" />
-  <circle cx="1640" cy="460" r="240" fill="#f4b400" fill-opacity="0.07" filter="url(#wideGlow)" />
-  <circle cx="960" cy="180" r="180" fill="#f4b400" fill-opacity="0.04" filter="url(#wideGlow)" />
-
-  <!-- 3. Left Wing: Synaptic AI Neural Cluster -->
-  <g opacity="0.9">
-    <!-- Neural Synapse Connections -->
-    <path d="M 60 220 Q 200 280 280 420 T 420 540" fill="none" stroke="url(#amberSynapseLeft)" stroke-width="1.6" />
-    <path d="M 120 580 Q 240 500 280 420 T 360 260" fill="none" stroke="url(#amberSynapseLeft)" stroke-width="1.2" stroke-dasharray="8 6" />
-    <path d="M 280 420 L 490 380 L 580 480" fill="none" stroke="#f4b400" stroke-opacity="0.4" stroke-width="1.2" />
-    <path d="M 280 420 Q 320 620 440 700" fill="none" stroke="#f4b400" stroke-opacity="0.5" stroke-width="1.4" />
-    <path d="M 180 340 L 280 420 L 220 560" fill="none" stroke="#09090b" stroke-opacity="0.08" stroke-width="1" />
-
-    <!-- Sub-network traces -->
-    <line x1="80" y1="180" x2="180" y2="340" stroke="#f4b400" stroke-opacity="0.35" stroke-width="1" />
-    <line x1="420" y1="540" x2="520" y2="660" stroke="#f4b400" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="4 4" />
-    <line x1="490" y1="380" x2="620" y2="340" stroke="#f4b400" stroke-opacity="0.4" stroke-width="1" />
-
-    <!-- Synaptic Nodes (Nodes with halos) -->
-    <!-- Node 1: Main Core Left -->
-    <circle cx="280" cy="420" r="14" fill="#f4b400" fill-opacity="0.2" filter="url(#softGlow)" />
-    <circle cx="280" cy="420" r="6" fill="#f4b400" />
-    <circle cx="280" cy="420" r="2.5" fill="#ffffff" />
-
-    <!-- Satellite Nodes -->
-    <circle cx="180" cy="340" r="4.5" fill="#f4b400" />
-    <circle cx="180" cy="340" r="1.5" fill="#ffffff" />
-    
-    <circle cx="420" cy="540" r="5" fill="#f4b400" />
-    <circle cx="420" cy="540" r="2" fill="#ffffff" />
-
-    <circle cx="360" cy="260" r="4" fill="#f4b400" />
-    <circle cx="490" cy="380" r="4.5" fill="#f4b400" />
-    <circle cx="580" cy="480" r="3.5" fill="#f4b400" />
-    <circle cx="440" cy="700" r="4" fill="#f4b400" />
-    <circle cx="220" cy="560" r="3" fill="#09090b" fill-opacity="0.3" />
-    <circle cx="120" cy="580" r="3" fill="#f4b400" fill-opacity="0.7" />
-    <circle cx="60" cy="220" r="3" fill="#f4b400" fill-opacity="0.7" />
-    <circle cx="620" cy="340" r="3" fill="#f4b400" fill-opacity="0.8" />
-  </g>
-
-  <!-- 4. Right Wing: Synaptic AI Neural Cluster & Data Automation Flow -->
-  <g opacity="0.9">
-    <!-- Neural Synapse Connections -->
-    <path d="M 1860 240 Q 1720 300 1640 460 T 1500 580" fill="none" stroke="url(#amberSynapseRight)" stroke-width="1.6" />
-    <path d="M 1800 620 Q 1680 520 1640 460 T 1560 280" fill="none" stroke="url(#amberSynapseRight)" stroke-width="1.2" stroke-dasharray="8 6" />
-    <path d="M 1640 460 L 1430 420 L 1340 520" fill="none" stroke="#f4b400" stroke-opacity="0.4" stroke-width="1.2" />
-    <path d="M 1640 460 Q 1600 660 1480 740" fill="none" stroke="#f4b400" stroke-opacity="0.5" stroke-width="1.4" />
-    <path d="M 1740 380 L 1640 460 L 1700 600" fill="none" stroke="#09090b" stroke-opacity="0.08" stroke-width="1" />
-
-    <!-- Sub-network traces -->
-    <line x1="1840" y1="200" x2="1740" y2="380" stroke="#f4b400" stroke-opacity="0.35" stroke-width="1" />
-    <line x1="1500" y1="580" x2="1400" y2="700" stroke="#f4b400" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="4 4" />
-    <line x1="1430" y1="420" x2="1300" y2="380" stroke="#f4b400" stroke-opacity="0.4" stroke-width="1" />
-
-    <!-- Synaptic Nodes Right -->
-    <!-- Node 1: Main Core Right -->
-    <circle cx="1640" cy="460" r="14" fill="#f4b400" fill-opacity="0.2" filter="url(#softGlow)" />
-    <circle cx="1640" cy="460" r="6" fill="#f4b400" />
-    <circle cx="1640" cy="460" r="2.5" fill="#ffffff" />
-
-    <!-- Satellite Nodes -->
-    <circle cx="1740" cy="380" r="4.5" fill="#f4b400" />
-    <circle cx="1740" cy="380" r="1.5" fill="#ffffff" />
-
-    <circle cx="1500" cy="580" r="5" fill="#f4b400" />
-    <circle cx="1500" cy="580" r="2" fill="#ffffff" />
-
-    <circle cx="1560" cy="280" r="4" fill="#f4b400" />
-    <circle cx="1430" cy="420" r="4.5" fill="#f4b400" />
-    <circle cx="1340" cy="520" r="3.5" fill="#f4b400" />
-    <circle cx="1480" cy="740" r="4" fill="#f4b400" />
-    <circle cx="1700" cy="600" r="3" fill="#09090b" fill-opacity="0.3" />
-    <circle cx="1800" cy="620" r="3" fill="#f4b400" fill-opacity="0.7" />
-    <circle cx="1860" cy="240" r="3" fill="#f4b400" fill-opacity="0.7" />
-    <circle cx="1300" cy="380" r="3" fill="#f4b400" fill-opacity="0.8" />
-  </g>
-
-  <!-- 5. Horizontal Precision Guide Lines & Vehicular Branding Accents -->
+  <!-- 2. Refined Horizontal Architecture Lines (Data Buses & Clean Paths) -->
   <g>
-    <!-- Top Horizon Line with Pulse Indicators -->
-    <line x1="80" y1="130" x2="1840" y2="130" stroke="url(#amberGlowH)" stroke-width="1.4" />
-    <circle cx="280" cy="130" r="3" fill="#f4b400" />
-    <circle cx="620" cy="130" r="2" fill="#f4b400" />
-    <circle cx="960" cy="130" r="3" fill="#f4b400" />
-    <circle cx="1300" cy="130" r="2" fill="#f4b400" />
-    <circle cx="1640" cy="130" r="3" fill="#f4b400" />
+    <!-- Top Horizon Track -->
+    <line x1="80" y1="120" x2="1840" y2="120" stroke="url(#hBusFull)" stroke-width="1.2" />
+    <line x1="240" y1="124" x2="560" y2="124" stroke="#f4b400" stroke-width="0.75" stroke-opacity="0.4" />
+    <line x1="1360" y1="124" x2="1680" y2="124" stroke="#f4b400" stroke-width="0.75" stroke-opacity="0.4" />
+    <circle cx="240" cy="120" r="2.5" fill="#f4b400" />
+    <circle cx="960" cy="120" r="2.5" fill="#f4b400" />
+    <circle cx="1680" cy="120" r="2.5" fill="#f4b400" />
 
-    <!-- Upper Circuit Bridge Lines -->
-    <path d="M 680 130 L 730 170 L 1210 170 L 1260 130" fill="none" stroke="url(#amberGlowH)" stroke-width="1" stroke-dasharray="6 4" />
-    <circle cx="730" cy="170" r="2" fill="#f4b400" />
-    <circle cx="1210" cy="170" r="2" fill="#f4b400" />
+    <!-- Left Side: Sleek Horizontal Stepped Bus Lines (Fade before center text) -->
+    <!-- Track L1 -->
+    <path d="M 0 280 L 320 280 L 380 340 L 520 340" fill="none" stroke="url(#hBusLeft)" stroke-width="1.4" />
+    <circle cx="320" cy="280" r="2.5" fill="#f4b400" />
+    <circle cx="520" cy="340" r="3" fill="#f4b400" />
+    <line x1="80" y1="276" x2="280" y2="276" stroke="#f4b400" stroke-width="0.75" stroke-opacity="0.3" stroke-dasharray="4 6" />
 
-    <!-- Bottom Structural Divider (Vehicular Graph style) -->
-    <line x1="120" y1="960" x2="1800" y2="960" stroke="url(#amberGlowH)" stroke-width="1.8" />
-    <line x1="120" y1="965" x2="480" y2="965" stroke="#f4b400" stroke-width="1" stroke-opacity="0.5" />
-    <line x1="1440" y1="965" x2="1800" y2="965" stroke="#f4b400" stroke-width="1" stroke-opacity="0.5" />
-    
-    <!-- Vertical Subtle Telemetry Coordinates -->
-    <line x1="120" y1="190" x2="120" y2="900" stroke="#f4b400" stroke-opacity="0.25" stroke-width="0.8" stroke-dasharray="4 8" />
-    <line x1="1800" y1="190" x2="1800" y2="900" stroke="#f4b400" stroke-opacity="0.25" stroke-width="0.8" stroke-dasharray="4 8" />
+    <!-- Track L2 -->
+    <path d="M 0 460 L 260 460 L 310 410 L 460 410" fill="none" stroke="url(#hBusLeft)" stroke-width="1.2" stroke-dasharray="6 4" />
+    <circle cx="260" cy="460" r="2.5" fill="#f4b400" />
+    <circle cx="460" cy="410" r="2.5" fill="#f4b400" />
 
-    <!-- Corner Framing Targets -->
-    <path d="M 50 50 L 80 50 M 50 50 L 50 80" stroke="#f4b400" stroke-width="1.4" stroke-opacity="0.8" />
-    <path d="M 1870 50 L 1840 50 M 1870 50 L 1870 80" stroke="#f4b400" stroke-width="1.4" stroke-opacity="0.8" />
-    <path d="M 50 1030 L 80 1030 M 50 1030 L 50 1000" stroke="#f4b400" stroke-width="1.4" stroke-opacity="0.8" />
-    <path d="M 1870 1030 L 1840 1030 M 1870 1030 L 1870 1000" stroke="#f4b400" stroke-width="1.4" stroke-opacity="0.8" />
+    <!-- Track L3 -->
+    <path d="M 0 640 L 290 640 L 350 700 L 480 700" fill="none" stroke="url(#hBusLeft)" stroke-width="1.4" />
+    <circle cx="290" cy="640" r="2.5" fill="#f4b400" />
+    <circle cx="480" cy="700" r="3" fill="#f4b400" />
+
+    <!-- Right Side: Sleek Horizontal Stepped Bus Lines (Fade before center text) -->
+    <!-- Track R1 -->
+    <path d="M 1920 280 L 1600 280 L 1540 340 L 1400 340" fill="none" stroke="url(#hBusRight)" stroke-width="1.4" />
+    <circle cx="1600" cy="280" r="2.5" fill="#f4b400" />
+    <circle cx="1400" cy="340" r="3" fill="#f4b400" />
+    <line x1="1840" y1="276" x2="1640" y2="276" stroke="#f4b400" stroke-width="0.75" stroke-opacity="0.3" stroke-dasharray="4 6" />
+
+    <!-- Track R2 -->
+    <path d="M 1920 460 L 1660 460 L 1610 410 L 1460 410" fill="none" stroke="url(#hBusRight)" stroke-width="1.2" stroke-dasharray="6 4" />
+    <circle cx="1660" cy="460" r="2.5" fill="#f4b400" />
+    <circle cx="1460" cy="410" r="2.5" fill="#f4b400" />
+
+    <!-- Track R3 -->
+    <path d="M 1920 640 L 1630 640 L 1570 700 L 1440 700" fill="none" stroke="url(#hBusRight)" stroke-width="1.4" />
+    <circle cx="1630" cy="640" r="2.5" fill="#f4b400" />
+    <circle cx="1440" cy="700" r="3" fill="#f4b400" />
+
+    <!-- Bottom Structural Horizon Line -->
+    <line x1="100" y1="960" x2="1820" y2="960" stroke="url(#hBusFull)" stroke-width="1.6" />
+    <line x1="100" y1="965" x2="420" y2="965" stroke="#f4b400" stroke-width="0.8" stroke-opacity="0.45" />
+    <line x1="1500" y1="965" x2="1820" y2="965" stroke="#f4b400" stroke-width="0.8" stroke-opacity="0.45" />
+    <circle cx="420" cy="960" r="2.5" fill="#f4b400" />
+    <circle cx="1500" cy="960" r="2.5" fill="#f4b400" />
+
+    <!-- Subtle Outer Vertical Guides -->
+    <line x1="80" y1="180" x2="80" y2="900" stroke="#f4b400" stroke-opacity="0.2" stroke-width="0.8" stroke-dasharray="6 8" />
+    <line x1="1840" y1="180" x2="1840" y2="900" stroke="#f4b400" stroke-opacity="0.2" stroke-width="0.8" stroke-dasharray="6 8" />
+
+    <!-- Precision Corner Framing Marks -->
+    <path d="M 40 40 L 70 40 M 40 40 L 40 70" stroke="#f4b400" stroke-width="1.4" stroke-opacity="0.75" />
+    <path d="M 1880 40 L 1850 40 M 1880 40 L 1880 70" stroke="#f4b400" stroke-width="1.4" stroke-opacity="0.75" />
+    <path d="M 40 1040 L 70 1040 M 40 1040 L 40 1010" stroke="#f4b400" stroke-width="1.4" stroke-opacity="0.75" />
+    <path d="M 1880 1040 L 1850 1040 M 1880 1040 L 1880 1010" stroke="#f4b400" stroke-width="1.4" stroke-opacity="0.75" />
   </g>
 </svg>
