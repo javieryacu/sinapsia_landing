@@ -908,5 +908,302 @@ export const manualData: Module[] = [
         )
       }
     ]
+  },
+  {
+    id: "diagnostico",
+    title: "02. Manual de Diagnóstico",
+    description: "Metodología estructurada para analizar cómo funciona una empresa, relevar procesos, detectar oportunidades reales y emitir recomendaciones claras.",
+    sections: [
+      {
+        id: "d-0",
+        title: "0. Propósito, Principios y Método",
+        content: (
+          <div className="space-y-6">
+            <p>El <strong>Diagnóstico SinapsIA</strong> es el proceso mediante el cual analizamos cómo funciona actualmente una empresa para identificar oportunidades concretas de mejora mediante tecnología.</p>
+            
+            <div className="bg-[#f4b400]/10 p-4 rounded-lg border-l-4 border-[#f4b400]">
+              <h4 className="font-bold text-[#09090b] mb-1">Pregunta Central del Diagnóstico:</h4>
+              <p className="text-base sm:text-lg italic text-gray-900 font-semibold">"¿Dónde puede la tecnología generar una mejora concreta en esta empresa y cuál es la mejor forma de hacerlo?"</p>
+            </div>
+
+            <div className="bg-[#09090b] text-white p-4 rounded-md text-center">
+              <span className="text-[#f4b400] font-bold block mb-1">PRINCIPIO FUNDAMENTAL</span>
+              Primero entendemos cómo funciona la empresa. Después definimos qué solución necesita.
+            </div>
+
+            <h4 className="font-bold text-gray-900 text-base">El Método SinapsIA en 6 Etapas:</h4>
+            <div className="flex flex-wrap gap-2 items-center font-bold text-xs sm:text-sm bg-gray-100 text-gray-800 p-3 rounded justify-center">
+              <span className="bg-white px-2.5 py-1 rounded shadow-xs">1. Preparar</span> <span className="text-[#f4b400]">→</span>
+              <span className="bg-white px-2.5 py-1 rounded shadow-xs">2. Relevar</span> <span className="text-[#f4b400]">→</span>
+              <span className="bg-white px-2.5 py-1 rounded shadow-xs">3. Comprender</span> <span className="text-[#f4b400]">→</span>
+              <span className="bg-white px-2.5 py-1 rounded shadow-xs">4. Detectar Oportunidades</span> <span className="text-[#f4b400]">→</span>
+              <span className="bg-white px-2.5 py-1 rounded shadow-xs">5. Priorizar</span> <span className="text-[#f4b400]">→</span>
+              <span className="bg-white px-2.5 py-1 rounded shadow-xs">6. Recomendar</span>
+            </div>
+
+            <p className="text-xs text-gray-500 text-center">El diagnóstico no tiene que resolver técnicamente todo; tiene que permitir tomar una buena decisión sobre qué hacer a continuación.</p>
+          </div>
+        )
+      },
+      {
+        id: "d-1",
+        title: "1. Etapa 1 — Preparación Previa",
+        content: (
+          <div className="space-y-4">
+            <p>Antes de reunirse con el cliente debemos investigar lo mínimo necesario para llegar con contexto real.</p>
+            
+            <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-xs">
+              <h4 className="font-bold text-[#09090b] mb-2 text-sm uppercase tracking-wide">Checklist de datos a registrar:</h4>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-700">
+                <li>• Nombre de la empresa y actividad</li>
+                <li>• Ubicación y sedes/sucursales</li>
+                <li>• Cantidad aprox. de empleados</li>
+                <li>• Sitio web y redes relevantes</li>
+                <li>• Persona de contacto y cargo</li>
+                <li>• Motivo por el cual solicita el diagnóstico</li>
+                <li>• Origen del contacto (referido, prospección)</li>
+                <li>• Información previa conocida</li>
+              </ul>
+            </div>
+
+            <div className="bg-gray-50 border-l-4 border-gray-800 p-4 rounded text-sm">
+              <p className="font-bold text-gray-900 mb-1">Objetivo de la preparación:</p>
+              <p className="italic text-gray-700">"Llegar a la reunión sabiendo al menos qué hace la empresa, cómo gana dinero y quién tenemos delante."</p>
+            </div>
+          </div>
+        )
+      },
+      {
+        id: "d-2",
+        title: "2. Etapa 2 — Relevamiento (3 Dimensiones Clave)",
+        content: (
+          <div className="space-y-6">
+            <div className="bg-gray-50 p-4 rounded border border-gray-200">
+              <p className="text-xs text-gray-500 uppercase tracking-wide font-bold mb-1">Frase de Apertura Recomendada:</p>
+              <p className="text-gray-800 italic">"Antes de hablar de soluciones, queremos entender cómo trabajan actualmente, qué sistemas utilizan y qué cosas sienten que podrían funcionar mejor."</p>
+            </div>
+
+            {/* Dimension 1 */}
+            <div className="border border-gray-200 rounded-lg p-4 bg-white shadow-xs">
+              <h4 className="font-bold text-[#09090b] text-base mb-2 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#f4b400]"></span>
+                Dimensión 1: Operación, Procesos y Personas
+              </h4>
+              <p className="text-sm text-gray-600 mb-3">Relevar cómo se realiza el trabajo diario, los cuellos de botella y las tareas artesanales.</p>
+              <ul className="space-y-1.5 text-sm text-gray-700 list-disc pl-5">
+                <li><strong>Procesos:</strong> ¿Cuáles son los pasos? ¿Quién interviene? ¿Dónde comienza y termina? ¿Qué parte es manual?</li>
+                <li><strong>Trabajo Manual:</strong> ¿Qué tareas repetitivas les consumen más tiempo al día? ¿Qué revisan a mano para evitar errores?</li>
+                <li><strong>Dependencia:</strong> ¿Hay procesos o información crítica que solo sabe/controla una sola persona? ¿Qué pasa si falta?</li>
+              </ul>
+            </div>
+
+            {/* Dimension 2 */}
+            <div className="border border-gray-200 rounded-lg p-4 bg-white shadow-xs">
+              <h4 className="font-bold text-[#09090b] text-base mb-2 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#f4b400]"></span>
+                Dimensión 2: Tecnología, Datos y Sistemas Desconectados
+              </h4>
+              <p className="text-sm text-gray-600 mb-3">Identificar el mapa de herramientas actuales y la fricción entre ellas.</p>
+              <ul className="space-y-1.5 text-sm text-gray-700 list-disc pl-5">
+                <li><strong>Sistemas:</strong> ¿Qué ERP, CRM, software contable, Excel o apps usan? ¿Qué función cumple cada uno?</li>
+                <li><strong>Datos:</strong> ¿Dónde está la información? ¿Hay múltiples Excel o bases separadas? ¿Cuesta obtener reportes?</li>
+                <li><strong>Desconexión:</strong> ¿Qué datos pasan a mano de un sistema a otro? ¿Con qué frecuencia exportan e importan?</li>
+                <li><strong>Sistemas Antiguos:</strong> ¿Qué funciona bien y qué limitaciones tiene? (Evaluar antes de proponer cambios).</li>
+              </ul>
+            </div>
+
+            {/* Dimension 3 */}
+            <div className="border border-gray-200 rounded-lg p-4 bg-white shadow-xs">
+              <h4 className="font-bold text-[#09090b] text-base mb-2 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#f4b400]"></span>
+                Dimensión 3: Canales de Atención, IA y Nuevos Desarrollos
+              </h4>
+              <p className="text-sm text-gray-600 mb-3">Detectar potencial para automatización avanzada, asistentes inteligentes o software a medida.</p>
+              <ul className="space-y-1.5 text-sm text-gray-700 list-disc pl-5">
+                <li><strong>Atención / WhatsApp:</strong> ¿Cómo reciben consultas? ¿Quién responde? ¿Se pierden chats? ¿Qué pasa fuera de horario?</li>
+                <li><strong>IA Aplicada:</strong> ¿Hay tareas donde alguien tenga que leer, resumir, clasificar o redactar información repetitivamente?</li>
+                <li><strong>Desarrollo a Medida:</strong> ¿Existen necesidades muy particulares del negocio que ninguna herramienta estándar cubre?</li>
+              </ul>
+            </div>
+
+            <div className="bg-yellow-50 border border-yellow-200 p-3 rounded text-sm text-yellow-900">
+              <strong>Señales de alerta inmediata a anotar:</strong> <em>"Lo hacemos a mano", "Tenemos un Excel para eso", "Copiamos y pegamos", "Eso solo lo hace Juan", "Tenemos que cargarlo dos veces".</em>
+            </div>
+          </div>
+        )
+      },
+      {
+        id: "d-3",
+        title: "3. Etapa 3 y 4 — Análisis y Detección de Oportunidades",
+        content: (
+          <div className="space-y-6">
+            <div className="bg-red-50 p-4 rounded border-l-4 border-red-500">
+              <h4 className="font-bold text-red-900 mb-1">Regla de Oro:</h4>
+              <p className="text-sm text-red-800">No confundir el <strong>Síntoma</strong> con el <strong>Problema</strong>, ni el problema con la <strong>Causa</strong>.</p>
+            </div>
+
+            <div>
+              <h4 className="font-bold text-gray-900 mb-2">La Cadena de Análisis SinapsIA:</h4>
+              <div className="flex flex-wrap gap-2 items-center font-mono text-xs sm:text-sm bg-[#09090b] text-white p-3.5 rounded justify-center">
+                <span>Síntoma</span> <span className="text-[#f4b400]">→</span>
+                <span>Causa</span> <span className="text-[#f4b400]">→</span>
+                <span>Impacto</span> <span className="text-[#f4b400]">→</span>
+                <span>Oportunidad</span> <span className="text-[#f4b400]">→</span>
+                <span>Solución Posible</span>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 p-4 rounded border border-gray-200 text-sm space-y-2">
+              <p><strong>Ejemplo práctico:</strong></p>
+              <p><span className="text-gray-500">Síntoma:</span> "Tenemos muchos errores y demoras en los pedidos."</p>
+              <p><span className="text-gray-500">Causa:</span> Los vendedores cargan en una app y administración lo vuelve a pasar a mano al sistema contable.</p>
+              <p><span className="text-gray-500">Impacto:</span> 3 horas diarias perdidas, retrasos de entrega y quejas de clientes.</p>
+              <p><span className="text-gray-500">Oportunidad:</span> Eliminar la doble carga manual.</p>
+              <p><span className="font-bold text-[#09090b]">Solución:</span> Integración automática entre ambos sistemas (sin necesidad de cambiar ninguno).</p>
+            </div>
+
+            <div>
+              <h4 className="font-bold text-gray-900 mb-2">Las 6 Categorías de Oportunidad:</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-xs">
+                <div className="bg-white border p-3 rounded"><strong className="text-[#f4b400] block text-sm">1. Optimizar</strong> Mejorar lo que ya funciona.</div>
+                <div className="bg-white border p-3 rounded"><strong className="text-[#f4b400] block text-sm">2. Modernizar</strong> Actualizar software limitado.</div>
+                <div className="bg-white border p-3 rounded"><strong className="text-[#f4b400] block text-sm">3. Automatizar</strong> Eliminar tareas repetitivas.</div>
+                <div className="bg-white border p-3 rounded"><strong className="text-[#f4b400] block text-sm">4. Integrar</strong> Conectar sistemas aislados.</div>
+                <div className="bg-white border p-3 rounded"><strong className="text-[#f4b400] block text-sm">5. IA</strong> Análisis, clasificación y atención inteligente.</div>
+                <div className="bg-white border p-3 rounded"><strong className="text-[#f4b400] block text-sm">6. Desarrollar</strong> Construir cuando no hay estándar.</div>
+              </div>
+            </div>
+          </div>
+        )
+      },
+      {
+        id: "d-4",
+        title: "4. Filtros de Decisión Tecnológica",
+        content: (
+          <div className="space-y-6">
+            <p className="text-sm text-gray-700">Guía rápida para determinar qué tipo de tecnología recomendar ante cada oportunidad:</p>
+            
+            {/* Filter IA */}
+            <div className="bg-white border border-gray-200 p-4 rounded-lg shadow-xs">
+              <h4 className="font-bold text-gray-900 mb-2 flex items-center justify-between">
+                <span>¿Cuándo recomendar Inteligencia Artificial?</span>
+                <span className="text-xs bg-[#f4b400]/20 text-gray-900 px-2 py-0.5 rounded font-bold">Filtro IA</span>
+              </h4>
+              <ul className="text-sm space-y-1 text-gray-700 list-disc pl-5">
+                <li>Existe una tarea que involucra comprensión de texto, análisis de patrones, clasificación, síntesis o generación.</li>
+                <li>El resultado genera un ahorro o mejora medible en la operación.</li>
+                <li><strong>Criterio de descarte:</strong> Si una automatización por reglas tradicional resuelve el problema de forma más simple y barata, <em>no se usa IA</em>.</li>
+              </ul>
+            </div>
+
+            {/* Filter Development */}
+            <div className="bg-white border border-gray-200 p-4 rounded-lg shadow-xs">
+              <h4 className="font-bold text-gray-900 mb-2 flex items-center justify-between">
+                <span>¿Cuándo recomendar Desarrollo de Software a Medida?</span>
+                <span className="text-xs bg-[#f4b400]/20 text-gray-900 px-2 py-0.5 rounded font-bold">Filtro Desarrollo</span>
+              </h4>
+              <ul className="text-sm space-y-1 text-gray-700 list-disc pl-5">
+                <li>El problema no se resuelve optimizando, configurando o integrando lo existente.</li>
+                <li>No existe un software en el mercado que se adapte al proceso particular de la empresa.</li>
+                <li>Construir la herramienta propia genera una ventaja competitiva u operativa clara.</li>
+              </ul>
+            </div>
+
+            {/* Filter Replacement vs Modernization */}
+            <div className="bg-white border border-gray-200 p-4 rounded-lg shadow-xs">
+              <h4 className="font-bold text-gray-900 mb-2 flex items-center justify-between">
+                <span>¿Cuándo reemplazar o modernizar un sistema?</span>
+                <span className="text-xs bg-[#f4b400]/20 text-gray-900 px-2 py-0.5 rounded font-bold">Filtro Reemplazo</span>
+              </h4>
+              <p className="text-sm text-gray-700 mb-2">Siempre evaluar la escala de menor a mayor impacto:</p>
+              <div className="text-xs font-bold text-center bg-gray-100 p-2 rounded flex justify-center items-center gap-1">
+                <span>Mantener</span> → <span>Mejorar</span> → <span>Modernizar</span> → <span>Integrar</span> → <span className="text-red-600">Reemplazar</span>
+              </div>
+            </div>
+          </div>
+        )
+      },
+      {
+        id: "d-5",
+        title: "5. Etapa 5 y 6 — Priorización y Recomendación",
+        content: (
+          <div className="space-y-6">
+            <p>No todas las oportunidades deben implementarse al mismo tiempo. El valor de SinapsIA es ordenar la hoja de ruta.</p>
+            
+            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-xs">
+              <div className="bg-gray-50 px-4 py-2 border-b border-gray-200 font-bold text-gray-800 text-sm">Matriz de Priorización Rápida:</div>
+              <div className="divide-y divide-gray-100 text-sm">
+                <div className="p-3 flex items-center justify-between">
+                  <div>
+                    <span className="font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded text-xs mr-2">ALTA</span>
+                    <span>Alto impacto en el negocio + Viabilidad técnica razonable</span>
+                  </div>
+                  <span className="text-xs text-gray-500 font-semibold">Prioridad 1 (Quick Win / Core)</span>
+                </div>
+                <div className="p-3 flex items-center justify-between">
+                  <div>
+                    <span className="font-bold text-yellow-700 bg-yellow-50 px-2 py-0.5 rounded text-xs mr-2">MEDIA</span>
+                    <span>Impacto interesante pero requiere mayor análisis previo</span>
+                  </div>
+                  <span className="text-xs text-gray-500 font-semibold">Prioridad 2</span>
+                </div>
+                <div className="p-3 flex items-center justify-between">
+                  <div>
+                    <span className="font-bold text-gray-600 bg-gray-100 px-2 py-0.5 rounded text-xs mr-2">BAJA</span>
+                    <span>Bajo impacto, alta complejidad o poca urgencia</span>
+                  </div>
+                  <span className="text-xs text-gray-500 font-semibold">Descartar / Postergar</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 p-4 rounded border border-gray-200">
+              <h4 className="font-bold text-gray-900 mb-2">Cómo estructurar la Recomendación:</h4>
+              <p className="text-sm text-gray-700 mb-2">No entregar una lista interminable de problemas. Responder con claridad: <strong>"¿Qué conviene hacer primero y por qué?"</strong></p>
+              <ul className="text-xs space-y-1 text-gray-600">
+                <li>• <strong>Prioridad 1:</strong> [Acción concreta] — <em>Motivo: alto volumen manual y pérdida de oportunidades.</em></li>
+                <li>• <strong>Prioridad 2:</strong> [Acción concreta] — <em>Motivo: duplicación de carga entre sistemas.</em></li>
+                <li>• <strong>Prioridad 3:</strong> [Acción concreta] — <em>Motivo: optimización futura.</em></li>
+              </ul>
+            </div>
+          </div>
+        )
+      },
+      {
+        id: "d-6",
+        title: "6. Informe de Diagnóstico y Cierre Comercial",
+        content: (
+          <div className="space-y-6">
+            <div className="bg-white border border-gray-200 p-4 rounded-lg shadow-xs">
+              <h4 className="font-bold text-gray-900 mb-3 text-sm uppercase tracking-wide">Estructura del Informe (Breve y Ejecutivo):</h4>
+              <ol className="list-decimal pl-5 space-y-1 text-sm text-gray-700">
+                <li><strong>Resumen Ejecutivo:</strong> Breve descripción de la situación actual.</li>
+                <li><strong>Situación Actual:</strong> Procesos y sistemas principales relevados.</li>
+                <li><strong>Problemas Detectados:</strong> Principales fricciones encontradas.</li>
+                <li><strong>Oportunidades:</strong> Mejoras potenciales identificadas.</li>
+                <li><strong>Priorización:</strong> Qué conviene abordar primero.</li>
+                <li><strong>Recomendación:</strong> Propuesta de hoja de ruta.</li>
+                <li><strong>Próxima Etapa:</strong> Si corresponde, propuesta de implementación.</li>
+              </ol>
+            </div>
+
+            <div className="bg-red-50 text-red-900 p-4 rounded-lg border-l-4 border-red-500 text-sm">
+              <h4 className="font-bold mb-1">Límite del Diagnóstico Gratuito:</h4>
+              <p className="mb-2">El diagnóstico genera confianza y valor, pero <strong>no debe convertirse en una consultoría técnica gratuita</strong>.</p>
+              <p className="italic text-xs">NO entregar: arquitectura detallada, código, especificaciones técnicas exhaustivas ni documentación que permita a terceros implementar la solución sin SinapsIA.</p>
+            </div>
+
+            <div className="bg-[#09090b] text-white p-5 rounded-lg text-sm space-y-2">
+              <h4 className="font-bold text-[#f4b400] text-base">¿Cuándo se convierte en Propuesta Comercial?</h4>
+              <p className="text-gray-300">Cuando el problema es real, el cliente reconoce el impacto, existe capacidad de decisión/presupuesto, urgencia y SinapsIA tiene la solución técnica viable.</p>
+            </div>
+
+            <div className="border border-yellow-300 bg-yellow-50 p-4 rounded text-xs text-yellow-900">
+              <strong>Señales de Alerta para detenerse:</strong> Si el cliente pide soluciones antes de explicar el problema, si nadie sabe cómo funciona el proceso interno o si la solución técnica no genera valor de negocio medible, se debe profundizar antes de cotizar.
+            </div>
+          </div>
+        )
+      }
+    ]
   }
 ];
