@@ -249,14 +249,45 @@ export default function CompaniesPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold uppercase text-gray-700 mb-1">Ubicación</label>
-                  <input
-                    type="text"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    placeholder="ej. Córdoba, Argentina"
-                    className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2 outline-none focus:border-[#f4b400]"
-                  />
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="block text-xs font-bold uppercase text-gray-700">Localidad / Ubicación</label>
+                  </div>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      list="locations-list"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                      placeholder="Seleccionar o escribir localidad..."
+                      className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2 outline-none focus:border-[#f4b400] bg-white"
+                    />
+                    <datalist id="locations-list">
+                      {Array.from(
+                        new Set([
+                          "Buenos Aires, CABA",
+                          "Rosario, Santa Fe",
+                          "Córdoba Capital",
+                          "Mendoza Capital",
+                          "Mar del Plata, Buenos Aires",
+                          "La Plata, Buenos Aires",
+                          "San Miguel de Tucumán",
+                          "Salta Capital",
+                          "Neuquén Capital",
+                          "Santa Fe Capital",
+                          "San Juan Capital",
+                          "Posadas, Misiones",
+                          "Resistencia, Chaco",
+                          "Bahía Blanca, Buenos Aires",
+                          ...companies
+                            .map((c) => c.location)
+                            .filter((loc): loc is string => !!loc && loc.trim().length > 0),
+                        ])
+                      ).map((loc) => (
+                        <option key={loc} value={loc} />
+                      ))}
+                    </datalist>
+                  </div>
+                  <p className="text-[10px] text-gray-400 mt-1">Escribí una nueva o elegí una de la lista</p>
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase text-gray-700 mb-1">Teléfono</label>
