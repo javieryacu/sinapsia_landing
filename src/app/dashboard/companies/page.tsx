@@ -213,16 +213,27 @@ export default function CompaniesPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-bold uppercase text-gray-700 mb-1">Industria / Rubro</label>
-                  <input
-                    type="text"
+                  <select
                     value={industry}
                     onChange={(e) => setIndustry(e.target.value)}
-                    placeholder="ej. Logística, Salud"
-                    className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2 outline-none focus:border-[#f4b400]"
-                  />
+                    className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2 outline-none focus:border-[#f4b400] bg-white cursor-pointer"
+                  >
+                    <option value="">Seleccionar rubro...</option>
+                    <option value="Salud / Clínicas / Diagnóstico">Salud / Clínicas / Diagnóstico</option>
+                    <option value="Logística / Distribución / Transporte">Logística / Distribución / Transporte</option>
+                    <option value="Servicios Profesionales / Contable / Legal">Servicios Profesionales / Contable / Legal</option>
+                    <option value="Comercio / Retail / E-commerce">Comercio / Retail / E-commerce</option>
+                    <option value="Industria / Manufactura / Producción">Industria / Manufactura / Producción</option>
+                    <option value="Inmobiliario / Construcción">Inmobiliario / Construcción</option>
+                    <option value="Gastronomía / Hotelería">Gastronomía / Hotelería</option>
+                    <option value="Educación / Instituciones">Educación / Instituciones</option>
+                    <option value="Tecnología / SaaS">Tecnología / SaaS</option>
+                    <option value="Agro / Campo">Agro / Campo</option>
+                    <option value="Otro">Otro rubro</option>
+                  </select>
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase text-gray-700 mb-1">Tamaño</label>
@@ -236,7 +247,7 @@ export default function CompaniesPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-bold uppercase text-gray-700 mb-1">Ubicación</label>
                   <input
