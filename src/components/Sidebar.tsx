@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -8,10 +9,12 @@ import {
   Building2,
   Users2,
   CalendarClock,
-  Sparkles,
   LogOut,
   Target,
   BookOpen,
+  Users,
+  Menu,
+  X,
 } from "lucide-react";
 
 const navigation = [
@@ -26,17 +29,22 @@ const navigation = [
 
 export function Sidebar({ user }: { user?: { name: string; email: string } }) {
   const pathname = usePathname();
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const handleLogout = async () => {
     await fetch("/api/auth/logout", { method: "POST" });
     window.location.href = "/login";
   };
 
-  return (
-    <aside className="w-64 bg-[#09090b] text-white flex flex-col shrink-0 border-r border-neutral-800 h-screen sticky top-0 font-['Hanken_Grotesk',sans-serif]">
+  const navContent = (
+    <div className="flex flex-col h-full bg-[#09090b] text-white">
       {/* Brand Header */}
-      <div className="p-6 border-b border-neutral-800/80">
-        <Link href="/dashboard" className="flex items-center gap-2.5">
+      <div className="p-5 border-b border-neutral-800/80 flex items-center justify-between">
+        <Link
+          href="/dashboard"
+          onClick={() => setIsMobileOpen(false)}
+          className="flex items-center gap-2.5"
+        >
           <div className="w-8 h-8 rounded-lg bg-[#f4b400] flex items-center justify-center text-[#09090b] font-black text-lg">
             S
           </div>
@@ -49,6 +57,12 @@ export function Sidebar({ user }: { user?: { name: string; email: string } }) {
             </div>
           </div>
         </Link>
+        <button
+          onClick={() => setIsMobileOpen(false)}
+          className="md:hidden p-1 text-neutral-400 hover:text-white"
+        >
+          <X className="w-5 h-5" />
+        </button>
       </div>
 
       {/* Navigation Links */}
@@ -63,6 +77,7 @@ export function Sidebar({ user }: { user?: { name: string; email: string } }) {
             <Link
               key={item.name}
               href={item.href}
+              onClick={() => setIsMobileOpen(false)}
               className={`flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all ${
                 isActive
                   ? "bg-[#f4b400] text-[#09090b] font-bold shadow-sm"
@@ -75,7 +90,7 @@ export function Sidebar({ user }: { user?: { name: string; email: string } }) {
           );
         })}
 
-        <div className="pt-6">
+        <div className="pt-4">
           <div className="text-[11px] font-semibold uppercase tracking-wider text-neutral-500 px-3 mb-2">
             Metodología
           </div>
@@ -106,12 +121,49 @@ export function Sidebar({ user }: { user?: { name: string; email: string } }) {
           <button
             onClick={handleLogout}
             title="Cerrar sesión"
-            className="p-1.5 text-neutral-400 hover:text-red-400 hover:bg-neutral-800 rounded-md transition-colors"
+            className="p-1.5 text-neutral-400 hover:text-red-400 hover:bg-neutral-800 rounded-md transition-colors cursor-pointer"
           >
             <LogOut className="w-4 h-4" />
           </button>
         </div>
       </div>
-    </aside>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Mobile Top Navbar with Hamburger */}
+      <div className="md:hidden bg-[#09090b] text-white p-3.5 px-4 flex items-center justify-between sticky top-0 z-30 border-b border-neutral-800 shrink-0">
+        <Link href="/dashboard" className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded-lg bg-[#f4b400] flex items-center justify-center text-[#09090b] font-black text-sm">
+            S
+          </div>
+          <span className="font-extrabold text-sm tracking-tight">
+            SINAPS<span className="text-[#f4b400]">IA</span> CRM
+          </span>
+        </Link>
+        <button
+          onClick={() => setIsMobileOpen(true)}
+          className="p-2 text-neutral-300 hover:text-white rounded-lg cursor-pointer"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Mobile Drawer Overlay */}
+      {isMobileOpen && (
+        <div className="fixed inset-0 z-50 md:hidden bg-black/60 backdrop-blur-xs flex">
+          <div className="w-72 max-w-[80vw] h-full shadow-2xl">
+            {navContent}
+          </div>
+          <div className="flex-1" onClick={() => setIsMobileOpen(false)} />
+        </div>
+      )}
+
+      {/* Desktop Permanent Sidebar */}
+      <aside className="hidden md:flex w-64 shrink-0 border-r border-neutral-800 h-screen sticky top-0">
+        {navContent}
+      </aside>
+    </>
   );
 }
