@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  CONSULTANT
+  SALES
+  DEVELOPER
+}
+
+enum Stage {
+  PROSPECCION
+  CONVERSACION
+  CALIFICACION
+  DIAGNOSTICO
+  PROPUESTA
+  GANADO
+  PERDIDO
+}
+
+enum Priority {
+  BAJA
+  MEDIA
+  ALTA
+}
+
+enum ActivityType {
+  NOTE
+  CALL
+  MEETING
+  EMAIL
+  TASK
+}
+
+model User {
+  id            String         @id @default(cuid())
+  email         String         @unique
+  name          String
+  password      String
+  role          Role           @default(CONSULTANT)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  opportunities Opportunity[]
+  activities    Activity[]
+
+  @@map("users")
+}
+
+model Company {
+  id            String         @id @default(cuid())
+  name          String
+  industry      String?
+  size          String?
+  location      String?
+  website       String?
+  phone         String?
+  notes         String?        @db.Text
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  contacts      Contact[]
+  opportunities Opportunity[]
+
+  @@map("companies")
+}
+
+model Contact {
+  id              String         @id @default(cuid())
+  companyId       String
+  name            String
+  email           String?
+  phone           String?
+  role            String?
+  isDecisionMaker Boolean        @default(false)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  company         Company        @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  opportunities   Opportunity[]
+
+  @@map("contacts")
+}
+
+model Opportunity {
+  id                String       @id @default(cuid())
+  title             String
+  companyId         String
+  contactId         String?
+  assignedUserId    String?
+  stage             Stage        @default(PROSPECCION)
+  priority          Priority     @default(MEDIA)
+  estimatedValue    Float?
+  expectedCloseDate DateTime?
+  lostReason        String?
+  summary           String?      @db.Text
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  company           Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  contact           Contact?     @relation(fields: [contactId], references: [id], onDelete: SetNull)
+  assignedUser      User?        @relation(fields: [assignedUserId], references: [id], onDelete: SetNull)
+  activities        Activity[]
+
+  @@map("opportunities")
+}
+
+model Activity {
+  id             String       @id @default(cuid())
+  opportunityId  String
+  userId         String
+  type           ActivityType @default(NOTE)
+  content        String       @db.Text
+  scheduledFor   DateTime?
+  isCompleted    Boolean      @default(false)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  opportunity    Opportunity  @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("activities")
+}
