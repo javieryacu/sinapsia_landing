@@ -77,23 +77,6 @@ export default function DashboardPage() {
       <Header
         title="Panel General"
         subtitle="Resumen de rendimiento y embudo comercial de SinapsIA"
-        onNewAction={async () => {
-          if (confirm("¿Estás seguro de que querés borrar todos los datos de prueba (empresas, prospectos y contactos)? Los usuarios registrados no se borrarán.")) {
-            setLoading(true);
-            try {
-              const res = await fetch("/api/auth/clear-data", { method: "POST" });
-              if (res.ok) {
-                alert("Datos de prueba eliminados.");
-                fetchStats();
-              }
-            } catch (err) {
-              console.error(err);
-            } finally {
-              setLoading(false);
-            }
-          }
-        }}
-        newActionLabel="Limpiar Datos de Prueba"
       />
 
       <div className="p-8 space-y-8">
