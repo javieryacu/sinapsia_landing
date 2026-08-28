@@ -122,7 +122,7 @@ export function OnboardingGuide() {
                       <div>
                         <strong className="text-gray-900 block font-bold text-sm">Abrí una Oportunidad en el Pipeline</strong>
                         <p className="text-xs text-gray-600 mt-0.5">
-                          Andá al <strong>Pipeline Comercial</strong> y hacé clic en *"Nueva Oportunidad"*. Poné un título descriptivo del problema preliminar (ej. *Automatización de WhatsApp y Turnos*).
+                          Andá al <strong>Pipeline Comercial</strong> → "Nueva Oportunidad". <strong>Lo más importante: completá el campo "¿Cuál es el problema del cliente?"</strong>. La metodología SinapsIA empieza siempre por el problema, no por la tecnología.
                         </p>
                       </div>
                     </div>
@@ -146,7 +146,19 @@ export function OnboardingGuide() {
                       <div>
                         <strong className="text-gray-900 block font-bold text-sm">Avanzá las Etapas con las Flechas</strong>
                         <p className="text-xs text-gray-600 mt-0.5">
-                          A medida que avanza la relación comercial, usá las flechas `←` y `→` de la tarjeta para moverlo de columna hasta el cierre (*Ganado*).
+                          Usá las flechas ← → de la tarjeta para mover la oportunidad entre columnas. Al llegar a <strong>Ganado</strong>, la empresa se marca automáticamente como Cliente.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3 items-start">
+                      <div className="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                        5
+                      </div>
+                      <div>
+                        <strong className="text-gray-900 block font-bold text-sm">No termines en Ganado — seguí evolucionando</strong>
+                        <p className="text-xs text-gray-600 mt-0.5">
+                          Movelo a <strong>En Ejecución</strong> mientras implementás, y luego a <strong>Cliente Activo</strong> para gestionar la relación continua y detectar nuevas oportunidades.
                         </p>
                       </div>
                     </div>
@@ -155,34 +167,43 @@ export function OnboardingGuide() {
               )}
 
               {activeTab === "etapas" && (
-                <div className="space-y-3">
+                <div className="space-y-2.5">
+                  <p className="text-xs text-gray-500 font-medium">El objetivo en cada etapa es avanzar al siguiente escalón. La relación no termina en Ganado.</p>
                   <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg text-xs">
                     <strong className="text-gray-900 font-bold block mb-0.5">1. Prospección:</strong>
-                    Empresas identificadas con potencial (procesos manuales, sistemas viejos) que aún no hemos contactado.
+                    Empresa identificada con problemas tecnológicos potenciales. Aún no hemos hecho contacto. <em>Objetivo: iniciar una conversación.</em>
                   </div>
                   <div className="p-3 bg-blue-50/60 border border-blue-200 rounded-lg text-xs">
                     <strong className="text-blue-900 font-bold block mb-0.5">2. Conversación:</strong>
-                    Ya enviamos mensaje o tuvimos el primer contacto cálido/frío. Objetivo: lograr una charla abierta.
+                    Primer contacto realizado (cálido o frío). Estamos escuchando a la empresa. <em>Objetivo: descubrir si hay un problema relevante.</em>
                   </div>
                   <div className="p-3 bg-indigo-50/60 border border-indigo-200 rounded-lg text-xs">
                     <strong className="text-indigo-900 font-bold block mb-0.5">3. Calificación:</strong>
-                    Descubrimos si realmente tienen un dolor o cuello de botella que valga la pena resolver.
+                    Validamos que el problema tiene impacto real y que hay voluntad de resolverlo. <em>Objetivo: conseguir el diagnóstico.</em>
                   </div>
                   <div className="p-3 bg-[#f4b400]/10 border border-[#f4b400]/40 rounded-lg text-xs">
-                    <strong className="text-gray-900 font-bold block mb-0.5">4. Diagnóstico (Clave):</strong>
-                    Relevamiento sin costo de sus sistemas y procesos para detectar oportunidades y prioridades.
+                    <strong className="text-gray-900 font-bold block mb-0.5">★ 4. Diagnóstico (Puerta de Entrada):</strong>
+                    Relevamiento sin costo: entendemos cómo opera la empresa, qué sistemas usa y qué oportunidades existen. <em>Objetivo: identificar oportunidades concretas.</em>
                   </div>
                   <div className="p-3 bg-purple-50/60 border border-purple-200 rounded-lg text-xs">
                     <strong className="text-purple-900 font-bold block mb-0.5">5. Propuesta:</strong>
-                    Enviamos la propuesta económica y alcance técnico para solucionar las prioridades detectadas.
+                    Enviamos solución técnica con alcance y presupuesto, basada en el diagnóstico. <em>Objetivo: convertir la oportunidad en proyecto.</em>
                   </div>
-                  <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-xs">
-                    <strong className="text-emerald-900 font-bold block mb-0.5">6. Ganado:</strong>
-                    El cliente aceptó la propuesta e inicia la etapa de implementación técnica.
+                  <div className="p-3 bg-emerald-50 border border-emerald-300 rounded-lg text-xs">
+                    <strong className="text-emerald-900 font-bold block mb-0.5">6. Ganado ✓:</strong>
+                    El cliente aceptó. Pasa a ser cliente oficial de SinapsIA. <em>La empresa queda marcada automáticamente como "Cliente".</em>
+                  </div>
+                  <div className="p-3 bg-teal-50 border border-teal-300 rounded-lg text-xs">
+                    <strong className="text-teal-900 font-bold block mb-0.5">7. En Ejecución:</strong>
+                    Implementación en curso — el equipo está entregando la solución. <em>Objetivo: generar resultado y confianza.</em>
+                  </div>
+                  <div className="p-3 bg-sky-50 border border-sky-300 rounded-lg text-xs">
+                    <strong className="text-sky-900 font-bold block mb-0.5">8. Cliente Activo (Recurrente):</strong>
+                    Proyecto terminado, relación continua. SinapsIA sigue identificando nuevas oportunidades. <em>Objetivo: evolución constante.</em>
                   </div>
                   <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-xs">
-                    <strong className="text-red-900 font-bold block mb-0.5">7. Perdido:</strong>
-                    No existía presupuesto, no era viable técnicamente o se postergó para el futuro.
+                    <strong className="text-red-900 font-bold block mb-0.5">9. Perdido:</strong>
+                    No había presupuesto, no era viable técnicamente o se postergó. Puede reactivarse a futuro.
                   </div>
                 </div>
               )}

@@ -8,9 +8,7 @@ export async function PATCH(
 ) {
   try {
     const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "No autorizado" }, { status: 401 });
-    }
+    if (!session) return NextResponse.json({ error: "No autorizado" }, { status: 401 });
 
     const { id } = await params;
     const body = await request.json();
@@ -23,6 +21,8 @@ export async function PATCH(
         ...(body.title && { title: body.title }),
         ...(body.estimatedValue !== undefined && { estimatedValue: body.estimatedValue ? parseFloat(body.estimatedValue) : null }),
         ...(body.summary !== undefined && { summary: body.summary }),
+        ...(body.problemDescription !== undefined && { problemDescription: body.problemDescription }),
+        ...(body.solutionType !== undefined && { solutionType: body.solutionType || null }),
         ...(body.lostReason !== undefined && { lostReason: body.lostReason }),
         ...(body.contactId !== undefined && { contactId: body.contactId || null }),
       },
@@ -30,11 +30,18 @@ export async function PATCH(
         company: true,
         contact: true,
         assignedUser: true,
-        activities: {
-          orderBy: { createdAt: "desc" },
-        },
+        activities: { orderBy: { createdAt: "desc" } },
       },
     });
+
+    // Auto-mark company as client when opportunity reaches client stages
+    const clientStages = ["GANADO", "EJECUCION", "RECURRENTE"];
+    if (body.stage && clientStages.includes(body.stage)) {
+      await prisma.company.update({
+        where: { id: updated.companyId },
+        data: { isClient: true },
+      });
+    }
 
     return NextResponse.json(updated);
   } catch (error) {

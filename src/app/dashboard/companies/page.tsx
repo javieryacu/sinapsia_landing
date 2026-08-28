@@ -22,6 +22,7 @@ interface Company {
   website: string | null;
   phone: string | null;
   notes: string | null;
+  isClient: boolean;
   contacts: Array<{ id: string; name: string; role: string | null }>;
   opportunities: Array<{ id: string; title: string; stage: string; estimatedValue: number | null }>;
 }
@@ -132,8 +133,19 @@ export default function CompaniesPage() {
                       </span>
                     )}
                   </div>
-                  <div className="p-2 bg-amber-50 rounded-lg text-[#f4b400]">
-                    <Building2 className="w-4 h-4" />
+                  <div className="flex flex-col items-end gap-1.5">
+                    <div className="p-2 bg-amber-50 rounded-lg text-[#f4b400]">
+                      <Building2 className="w-4 h-4" />
+                    </div>
+                    {company.isClient ? (
+                      <span className="text-[9px] bg-emerald-100 text-emerald-700 border border-emerald-300 px-1.5 py-0.5 rounded-full font-extrabold uppercase">
+                        Cliente ✓
+                      </span>
+                    ) : (
+                      <span className="text-[9px] bg-gray-100 text-gray-500 border border-gray-200 px-1.5 py-0.5 rounded-full font-bold uppercase">
+                        Prospecto
+                      </span>
+                    )}
                   </div>
                 </div>
 

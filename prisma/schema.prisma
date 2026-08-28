@@ -20,6 +20,8 @@ enum Stage {
   DIAGNOSTICO
   PROPUESTA
   GANADO
+  EJECUCION
+  RECURRENTE
   PERDIDO
 }
 
@@ -35,6 +37,15 @@ enum ActivityType {
   MEETING
   EMAIL
   TASK
+}
+
+enum SolutionType {
+  OPTIMIZAR
+  AUTOMATIZAR
+  INTEGRAR
+  INTELIGENCIA_ARTIFICIAL
+  DESARROLLAR
+  COMBINADO
 }
 
 model User {
@@ -60,6 +71,7 @@ model Company {
   website       String?
   phone         String?
   notes         String?        @db.Text
+  isClient      Boolean        @default(false)
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
   contacts      Contact[]
@@ -85,24 +97,26 @@ model Contact {
 }
 
 model Opportunity {
-  id                String       @id @default(cuid())
-  title             String
-  companyId         String
-  contactId         String?
-  assignedUserId    String?
-  stage             Stage        @default(PROSPECCION)
-  priority          Priority     @default(MEDIA)
-  estimatedValue    Float?
-  expectedCloseDate DateTime?
-  lostReason        String?
-  summary           String?      @db.Text
-  createdAt         DateTime     @default(now())
-  updatedAt         DateTime     @updatedAt
+  id                  String        @id @default(cuid())
+  title               String
+  companyId           String
+  contactId           String?
+  assignedUserId      String?
+  stage               Stage         @default(PROSPECCION)
+  priority            Priority      @default(MEDIA)
+  estimatedValue      Float?
+  expectedCloseDate   DateTime?
+  lostReason          String?
+  summary             String?       @db.Text
+  problemDescription  String?       @db.Text
+  solutionType        SolutionType?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
 
-  company           Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
-  contact           Contact?     @relation(fields: [contactId], references: [id], onDelete: SetNull)
-  assignedUser      User?        @relation(fields: [assignedUserId], references: [id], onDelete: SetNull)
-  activities        Activity[]
+  company             Company       @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  contact             Contact?      @relation(fields: [contactId], references: [id], onDelete: SetNull)
+  assignedUser        User?         @relation(fields: [assignedUserId], references: [id], onDelete: SetNull)
+  activities          Activity[]
 
   @@map("opportunities")
 }

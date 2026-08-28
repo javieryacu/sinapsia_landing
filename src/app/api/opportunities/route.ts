@@ -5,25 +5,14 @@ import { getSession } from "@/lib/auth";
 export async function GET() {
   try {
     const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "No autorizado" }, { status: 401 });
-    }
+    if (!session) return NextResponse.json({ error: "No autorizado" }, { status: 401 });
 
     const opportunities = await prisma.opportunity.findMany({
       include: {
-        company: {
-          select: { id: true, name: true, industry: true, location: true },
-        },
-        contact: {
-          select: { id: true, name: true, role: true, email: true, phone: true, isDecisionMaker: true },
-        },
-        assignedUser: {
-          select: { id: true, name: true, email: true },
-        },
-        activities: {
-          orderBy: { createdAt: "desc" },
-          take: 3,
-        },
+        company: { select: { id: true, name: true, industry: true, location: true } },
+        contact: { select: { id: true, name: true, role: true, email: true, phone: true, isDecisionMaker: true } },
+        assignedUser: { select: { id: true, name: true, email: true } },
+        activities: { orderBy: { createdAt: "desc" }, take: 5 },
       },
       orderBy: { updatedAt: "desc" },
     });
@@ -38,18 +27,13 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "No autorizado" }, { status: 401 });
-    }
+    if (!session) return NextResponse.json({ error: "No autorizado" }, { status: 401 });
 
     const body = await request.json();
-    const { title, companyId, contactId, stage, priority, estimatedValue, summary } = body;
+    const { title, companyId, contactId, stage, priority, estimatedValue, summary, problemDescription, solutionType } = body;
 
     if (!title || !companyId) {
-      return NextResponse.json(
-        { error: "Título y Empresa son obligatorios" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Título y Empresa son obligatorios" }, { status: 400 });
     }
 
     const newOpp = await prisma.opportunity.create({
@@ -62,12 +46,10 @@ export async function POST(request: Request) {
         priority: priority || "MEDIA",
         estimatedValue: estimatedValue ? parseFloat(estimatedValue) : null,
         summary: summary || null,
+        problemDescription: problemDescription || null,
+        solutionType: solutionType || null,
       },
-      include: {
-        company: true,
-        contact: true,
-        assignedUser: true,
-      },
+      include: { company: true, contact: true, assignedUser: true },
     });
 
     return NextResponse.json(newOpp, { status: 201 });
