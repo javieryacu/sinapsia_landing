@@ -24,7 +24,7 @@ const navigation = [
   { name: "Contactos", href: "/dashboard/contacts", icon: Users2 },
   { name: "Actividades & Follow-up", href: "/dashboard/activities", icon: CalendarClock },
   { name: "Equipo & Usuarios", href: "/dashboard/users", icon: Users },
-  { name: "Manual / Playbook", href: "/playbook", icon: BookOpen },
+  { name: "Manual / Playbook", href: "/dashboard/playbook", icon: BookOpen },
 ];
 
 export function Sidebar({ user }: { user?: { name: string; email: string } }) {

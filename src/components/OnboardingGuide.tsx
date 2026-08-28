@@ -242,7 +242,7 @@ export function OnboardingGuide() {
             {/* Footer Action */}
             <div className="p-4 border-t border-gray-100 bg-gray-50 flex justify-between items-center text-xs">
               <Link
-                href="/playbook"
+                href="/dashboard/playbook"
                 onClick={() => setIsOpen(false)}
                 className="text-gray-700 hover:text-[#09090b] font-bold flex items-center gap-1"
               >
