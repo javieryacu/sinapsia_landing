@@ -75,9 +75,8 @@
 | Hito | Porcentaje | Momento |
 |:---|:---:|:---|
 | Adelanto | 30% | Al aceptar la propuesta y antes de iniciar |
-| Primera entrega | 30% | Al entregar el producto funcional (MVP o fase) |
-| Cierre y correcciones | 30% | Después de corregir todos los errores reportados |
-| *Reserva / margen* | *10%* | *Queda implícito como margen operativo* |
+| Primera entrega | 40% | Al entregar el producto funcional (MVP o fase) |
+| Cierre y correcciones | 30% | Después de corregidos todos los errores reportados |
 
 ---
 
