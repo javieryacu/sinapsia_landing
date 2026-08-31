@@ -238,19 +238,19 @@ export const manualData: Module[] = [
         title: "9. El recorrido del cliente",
         content: (
           <div className="space-y-4">
-            <p>El proceso comercial y de servicio es:</p>
+            <p>El proceso comercial y de desarrollo se estructura en 7 etapas de ventas y un ciclo ágil de delivery:</p>
             <div className="flex flex-col items-center space-y-1 py-4">
-              {['Prospección', 'Primer contacto', 'Conversación', 'Diagnóstico', 'Oportunidades detectadas', 'Propuesta', 'Implementación', 'Soporte y evolución', 'Nuevas oportunidades'].map((step, i, arr) => (
+              {['1. Prospecto', '2. Contacto (Visita / WhatsApp)', '3. Conversación', '4. Diagnóstico ★', '5. Propuesta (30/40/30)', '6. Ganado ✓ (Inicio de Proyecto)', '7. Desarrollo Ágil & QA Cliente', '8. Pre-Producción & Cobros', '9. Evolución / Post-Venta'].map((step, i, arr) => (
                 <React.Fragment key={step}>
-                  <div className="bg-white border border-gray-200 shadow-sm px-4 py-2 rounded-md font-medium text-sm w-64 text-center">
+                  <div className="bg-white border border-gray-200 shadow-sm px-4 py-2 rounded-md font-medium text-sm w-72 text-center">
                     {step}
                   </div>
                   {i < arr.length - 1 && <div className="text-[#f4b400]">↓</div>}
                 </React.Fragment>
               ))}
             </div>
-            <p className="text-center font-semibold mt-4">La relación ideal no termina con un proyecto.</p>
-            <p className="text-center text-sm text-gray-600">Un cliente puede evolucionar desde una necesidad puntual hasta convertirse en un cliente recurrente de SinapsIA.</p>
+            <p className="text-center font-semibold mt-4">La relación ideal no termina con el primer desarrollo.</p>
+            <p className="text-center text-sm text-gray-600">Un cliente evoluciona entregando valor en cada fase y activando nuevos módulos o proyectos en paralelo.</p>
           </div>
         )
       },
@@ -472,32 +472,36 @@ export const manualData: Module[] = [
             <p>No intentamos cerrar todo en una sola conversación.</p>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between items-center p-3 bg-gray-50 rounded border border-gray-100">
-                <span className="font-bold">Primer contacto</span>
-                <span className="text-gray-600">conseguir una conversación.</span>
+                <span className="font-bold">1. Prospecto</span>
+                <span className="text-gray-600">identificar empresas con dolor o cuellos de botella.</span>
               </div>
               <div className="flex justify-between items-center p-3 bg-gray-50 rounded border border-gray-100">
-                <span className="font-bold">Conversación</span>
-                <span className="text-gray-600">descubrir si existe un problema relevante.</span>
+                <span className="font-bold">2. Contacto</span>
+                <span className="text-gray-600">abrir la puerta por visita presencial o WhatsApp.</span>
               </div>
               <div className="flex justify-between items-center p-3 bg-gray-50 rounded border border-gray-100">
-                <span className="font-bold">Descubrimiento</span>
-                <span className="text-gray-600">determinar si vale la pena realizar un diagnóstico.</span>
+                <span className="font-bold">3. Conversación</span>
+                <span className="text-gray-600">escuchar los dolores y validar si existe un problema relevante.</span>
               </div>
               <div className="flex justify-between items-center p-3 bg-gray-50 rounded border border-gray-100">
-                <span className="font-bold">Diagnóstico</span>
-                <span className="text-gray-600">identificar oportunidades concretas.</span>
+                <span className="font-bold">4. Diagnóstico ★</span>
+                <span className="text-gray-600">relevar procesos y sistemas para detectar oportunidades concretas.</span>
               </div>
               <div className="flex justify-between items-center p-3 bg-gray-50 rounded border border-gray-100">
-                <span className="font-bold">Propuesta</span>
-                <span className="text-gray-600">convertir una oportunidad en un proyecto.</span>
+                <span className="font-bold">5. Propuesta</span>
+                <span className="text-gray-600">presentar alcance y cotización con cobro 30/40/30.</span>
               </div>
               <div className="flex justify-between items-center p-3 bg-gray-50 rounded border border-gray-100">
-                <span className="font-bold">Implementación</span>
-                <span className="text-gray-600">generar resultado y confianza.</span>
+                <span className="font-bold">6. Ganado ✓</span>
+                <span className="text-gray-600">cerrar el acuerdo y gatillar el Proyecto Ágil.</span>
               </div>
               <div className="flex justify-between items-center p-3 bg-gray-50 rounded border border-gray-100">
-                <span className="font-bold">Evolución</span>
-                <span className="text-gray-600">convertir un proyecto en una relación continua.</span>
+                <span className="font-bold">7. Desarrollo & QA Cliente</span>
+                <span className="text-gray-600">desarrollar en sprints con validación continua del cliente.</span>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-gray-50 rounded border border-gray-100">
+                <span className="font-bold">8. Evolución / Post-Venta</span>
+                <span className="text-gray-600">agregar features o nuevos proyectos paralelos.</span>
               </div>
             </div>
           </div>
