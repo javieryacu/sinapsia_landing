@@ -15,11 +15,13 @@ import {
   Users,
   Menu,
   X,
+  FolderGit2,
 } from "lucide-react";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "Pipeline Comercial", href: "/dashboard/pipeline", icon: Kanban },
+  { name: "Proyectos & Cobros", href: "/dashboard/projects", icon: FolderGit2 },
   { name: "Empresas", href: "/dashboard/companies", icon: Building2 },
   { name: "Contactos", href: "/dashboard/contacts", icon: Users2 },
   { name: "Actividades & Follow-up", href: "/dashboard/activities", icon: CalendarClock },

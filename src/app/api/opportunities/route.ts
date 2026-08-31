@@ -13,6 +13,7 @@ export async function GET() {
         contact: { select: { id: true, name: true, role: true, email: true, phone: true, isDecisionMaker: true } },
         assignedUser: { select: { id: true, name: true, email: true } },
         activities: { orderBy: { createdAt: "desc" }, take: 5 },
+        project: { select: { id: true, status: true, totalValue: true } },
       },
       orderBy: { updatedAt: "desc" },
     });
@@ -42,14 +43,14 @@ export async function POST(request: Request) {
         companyId,
         contactId: contactId || null,
         assignedUserId: session.id,
-        stage: stage || "PROSPECCION",
+        stage: stage || "PROSPECTO",
         priority: priority || "MEDIA",
         estimatedValue: estimatedValue ? parseFloat(estimatedValue) : null,
         summary: summary || null,
         problemDescription: problemDescription || null,
         solutionType: solutionType || null,
       },
-      include: { company: true, contact: true, assignedUser: true },
+      include: { company: true, contact: true, assignedUser: true, project: true },
     });
 
     return NextResponse.json(newOpp, { status: 201 });

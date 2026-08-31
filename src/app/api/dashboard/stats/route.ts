@@ -7,45 +7,59 @@ export async function GET() {
     const session = await getSession();
     if (!session) return NextResponse.json({ error: "No autorizado" }, { status: 401 });
 
-    const [opportunities, totalCompanies, totalContacts] = await Promise.all([
+    const [opportunities, totalCompanies, totalContacts, projects, payments] = await Promise.all([
       prisma.opportunity.findMany({
         include: {
           company: { select: { name: true } },
           activities: { take: 1, orderBy: { createdAt: "desc" } },
+          project: { select: { id: true, status: true, totalValue: true } },
         },
         orderBy: { createdAt: "asc" },
       }),
       prisma.company.count(),
       prisma.contact.count(),
+      prisma.project.findMany({
+        include: {
+          company: { select: { name: true } },
+          phases: true,
+          payments: true,
+        },
+      }),
+      prisma.payment.findMany(),
     ]);
 
     const stageCounts: Record<string, number> = {
-      PROSPECCION: 0,
+      PROSPECTO: 0,
+      CONTACTO: 0,
       CONVERSACION: 0,
-      CALIFICACION: 0,
       DIAGNOSTICO: 0,
       PROPUESTA: 0,
       GANADO: 0,
-      EJECUCION: 0,
-      RECURRENTE: 0,
       PERDIDO: 0,
     };
 
     const solutionTypeCounts: Record<string, number> = {};
     let pipelineValue = 0;
     let wonValue = 0;
-    let clientsInExecution = 0;
 
     opportunities.forEach((opp) => {
-      if (stageCounts[opp.stage] !== undefined) stageCounts[opp.stage]++;
+      if (stageCounts[opp.stage] !== undefined) {
+        stageCounts[opp.stage]++;
+      } else {
+        // Fallback for legacy stage keys if any
+        if (opp.stage === ("PROSPECCION" as any)) stageCounts.PROSPECTO++;
+        else if (opp.stage === ("CALIFICACION" as any)) stageCounts.CONVERSACION++;
+        else if (opp.stage === ("EJECUCION" as any) || opp.stage === ("RECURRENTE" as any)) stageCounts.GANADO++;
+      }
 
-      // Pipeline value: stages before GANADO
-      const closedStages = ["GANADO", "EJECUCION", "RECURRENTE", "PERDIDO"];
-      if (!closedStages.includes(opp.stage) && opp.estimatedValue) {
+      // Pipeline value: stages before GANADO/PERDIDO
+      const openStages = ["PROSPECTO", "CONTACTO", "CONVERSACION", "DIAGNOSTICO", "PROPUESTA", "PROSPECCION", "CALIFICACION"];
+      if (openStages.includes(opp.stage) && opp.estimatedValue) {
         pipelineValue += opp.estimatedValue;
       }
-      if (opp.stage === "GANADO" && opp.estimatedValue) wonValue += opp.estimatedValue;
-      if (opp.stage === "EJECUCION" || opp.stage === "RECURRENTE") clientsInExecution++;
+      if (opp.stage === "GANADO" && opp.estimatedValue) {
+        wonValue += opp.estimatedValue;
+      }
 
       // Count by solution type
       if (opp.solutionType) {
@@ -53,26 +67,53 @@ export async function GET() {
       }
     });
 
-    const activeCount = opportunities.filter(
-      (o) => !["GANADO", "EJECUCION", "RECURRENTE", "PERDIDO"].includes(o.stage)
+    const activeCount = opportunities.filter((o) =>
+      ["PROSPECTO", "CONTACTO", "CONVERSACION", "DIAGNOSTICO", "PROPUESTA", "PROSPECCION", "CALIFICACION"].includes(o.stage)
     ).length;
 
     // Win rate (closed = GANADO vs PERDIDO)
     const totalClosed = stageCounts.GANADO + stageCounts.PERDIDO;
     const winRate = totalClosed > 0 ? Math.round((stageCounts.GANADO / totalClosed) * 100) : 0;
 
-    // Conversion: Prospección → Diagnóstico rate
+    // Conversion: Funnel to Diagnosis
     const totalProspects = opportunities.length;
     const reachedDiagnosis = opportunities.filter((o) =>
-      ["DIAGNOSTICO", "PROPUESTA", "GANADO", "EJECUCION", "RECURRENTE"].includes(o.stage)
+      ["DIAGNOSTICO", "PROPUESTA", "GANADO"].includes(o.stage)
     ).length;
     const diagnosisConversionRate = totalProspects > 0 ? Math.round((reachedDiagnosis / totalProspects) * 100) : 0;
 
-    // Conversion: Diagnóstico → Propuesta
+    // Conversion: Diagnosis to Proposal
     const reachedPropuesta = opportunities.filter((o) =>
-      ["PROPUESTA", "GANADO", "EJECUCION", "RECURRENTE"].includes(o.stage)
+      ["PROPUESTA", "GANADO"].includes(o.stage)
     ).length;
     const propuestaConversionRate = reachedDiagnosis > 0 ? Math.round((reachedPropuesta / reachedDiagnosis) * 100) : 0;
+
+    // Project & Billing stats
+    const totalProjects = projects.length;
+    const activeProjects = projects.filter((p) =>
+      ["PENDIENTE_INICIO", "EN_DESARROLLO", "PRE_PRODUCCION"].includes(p.status)
+    ).length;
+    const completedProjects = projects.filter((p) => p.status === "COMPLETADO").length;
+
+    let totalProjectPortfolioValue = 0;
+    projects.forEach((p) => {
+      totalProjectPortfolioValue += p.totalValue || 0;
+    });
+
+    let totalCollected = 0;
+    let totalPendingReceivables = 0;
+    let totalBilled = 0;
+
+    payments.forEach((pay) => {
+      if (pay.status === "COBRADO") {
+        totalCollected += pay.amount;
+      } else if (pay.status === "FACTURADO") {
+        totalBilled += pay.amount;
+        totalPendingReceivables += pay.amount;
+      } else {
+        totalPendingReceivables += pay.amount;
+      }
+    });
 
     return NextResponse.json({
       activeCount,
@@ -83,10 +124,18 @@ export async function GET() {
       totalContacts,
       stageCounts,
       solutionTypeCounts,
-      clientsInExecution,
       diagnosisConversionRate,
       propuestaConversionRate,
+      // Project metrics
+      totalProjects,
+      activeProjects,
+      completedProjects,
+      totalProjectPortfolioValue,
+      totalCollected,
+      totalPendingReceivables,
+      totalBilled,
       recentOpportunities: opportunities.slice(-5).reverse(),
+      recentProjects: projects.slice(-4).reverse(),
     });
   } catch (error) {
     console.error("Error fetching stats:", error);

@@ -31,12 +31,12 @@ export async function PATCH(
         contact: true,
         assignedUser: true,
         activities: { orderBy: { createdAt: "desc" } },
+        project: true,
       },
     });
 
-    // Auto-mark company as client when opportunity reaches client stages
-    const clientStages = ["GANADO", "EJECUCION", "RECURRENTE"];
-    if (body.stage && clientStages.includes(body.stage)) {
+    // Auto-mark company as client when opportunity reaches GANADO
+    if (body.stage && body.stage === "GANADO") {
       await prisma.company.update({
         where: { id: updated.companyId },
         data: { isClient: true },

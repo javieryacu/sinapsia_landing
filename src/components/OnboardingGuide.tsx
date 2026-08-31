@@ -2,18 +2,14 @@
 
 import { useState } from "react";
 import {
-  HelpCircle,
   X,
-  Target,
-  ArrowRight,
-  Stethoscope,
-  Kanban,
-  Building2,
-  Users,
-  CheckCircle2,
   Sparkles,
   ChevronRight,
   Compass,
+  FolderGit2,
+  CheckCircle2,
+  Layers,
+  DollarSign,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -29,7 +25,7 @@ export function OnboardingGuide() {
         className="fixed bottom-5 right-5 z-40 bg-[#09090b] hover:bg-[#f4b400] text-white hover:text-[#09090b] p-3 sm:px-4 sm:py-2.5 rounded-full sm:rounded-xl shadow-2xl border border-neutral-700 flex items-center gap-2 font-bold text-xs transition-all transform hover:scale-105 cursor-pointer font-['Hanken_Grotesk',sans-serif]"
       >
         <Compass className="w-5 h-5 text-[#f4b400] sm:w-4 sm:h-4 group-hover:text-[#09090b]" />
-        <span className="hidden sm:inline">Guía & Método Comercial</span>
+        <span className="hidden sm:inline">Guía & Proceso SinapsIA</span>
       </button>
 
       {/* Modal Guide */}
@@ -44,10 +40,10 @@ export function OnboardingGuide() {
                 </div>
                 <div>
                   <h3 className="text-lg font-black text-gray-900 leading-tight">
-                    Guía Rápida para el Equipo SinapsIA
+                    Guía Operativa & Comercial SinapsIA
                   </h3>
                   <p className="text-xs text-gray-500 mt-0.5">
-                    Metodología de ventas consultivas, etapas y buenas prácticas
+                    Proceso de ventas consultivas, desarrollo ágil por fases y cobranzas 30/40/30
                   </p>
                 </div>
               </div>
@@ -79,7 +75,7 @@ export function OnboardingGuide() {
                     : "border-transparent text-gray-500 hover:text-gray-800"
                 }`}
               >
-                2. Las 7 Etapas del Pipeline
+                2. Embudo (7 Etapas) & Proyectos
               </button>
               <button
                 onClick={() => setActiveTab("terminos")}
@@ -89,7 +85,7 @@ export function OnboardingGuide() {
                     : "border-transparent text-gray-500 hover:text-gray-800"
                 }`}
               >
-                3. Glosario & Regla de Oro
+                3. Cobros (30/40/30) & Reglas
               </button>
             </div>
 
@@ -98,8 +94,8 @@ export function OnboardingGuide() {
               {activeTab === "flujo" && (
                 <div className="space-y-4">
                   <div className="p-4 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 space-y-1">
-                    <strong className="block font-bold text-sm">Objetivo Principal:</strong>
-                    No vendemos software por catálogo. Detectamos problemas en la operación de las empresas y diseñamos la solución tecnológica adecuada.
+                    <strong className="block font-bold text-sm">Principio Fundamental:</strong>
+                    Nunca empezamos por la tecnología, empezamos por el dolor o cuello de botella de la empresa.
                   </div>
 
                   <div className="space-y-3">
@@ -108,9 +104,9 @@ export function OnboardingGuide() {
                         1
                       </div>
                       <div>
-                        <strong className="text-gray-900 block font-bold text-sm">Creá la Empresa y Contacto</strong>
+                        <strong className="text-gray-900 block font-bold text-sm">Identificá y cargá la Empresa</strong>
                         <p className="text-xs text-gray-600 mt-0.5">
-                          En el menú lateral andá a <strong>Empresas</strong> o <strong>Contactos</strong>. Anotá quién es el tomador de decisiones (*Decisor*).
+                          En el menú lateral andá a <strong>Empresas</strong> o <strong>Contactos</strong>. Anotá rubro, localidad y quién toma decisiones.
                         </p>
                       </div>
                     </div>
@@ -120,9 +116,9 @@ export function OnboardingGuide() {
                         2
                       </div>
                       <div>
-                        <strong className="text-gray-900 block font-bold text-sm">Abrí una Oportunidad en el Pipeline</strong>
+                        <strong className="text-gray-900 block font-bold text-sm">Abrí la Oportunidad en el Pipeline</strong>
                         <p className="text-xs text-gray-600 mt-0.5">
-                          Andá al <strong>Pipeline Comercial</strong> → "Nueva Oportunidad". <strong>Lo más importante: completá el campo "¿Cuál es el problema del cliente?"</strong>. La metodología SinapsIA empieza siempre por el problema, no por la tecnología.
+                          Andá a <strong>Pipeline Comercial</strong> → "Nueva Oportunidad". Describí claramente el problema operativo y el tipo de solución preliminar.
                         </p>
                       </div>
                     </div>
@@ -132,33 +128,21 @@ export function OnboardingGuide() {
                         3
                       </div>
                       <div>
-                        <strong className="text-gray-900 block font-bold text-sm">Registrá cada Interacción (Follow-up)</strong>
+                        <strong className="text-gray-900 block font-bold text-sm">Hacé el Diagnóstico y Presentá Propuesta (30/40/30)</strong>
                         <p className="text-xs text-gray-600 mt-0.5">
-                          Hacé clic en la tarjeta del prospecto para abrir el panel lateral y anotar los puntos tratados en llamadas o reuniones.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-3 items-start">
-                      <div className="w-6 h-6 rounded-full bg-[#09090b] text-[#f4b400] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                        4
-                      </div>
-                      <div>
-                        <strong className="text-gray-900 block font-bold text-sm">Avanzá las Etapas con las Flechas</strong>
-                        <p className="text-xs text-gray-600 mt-0.5">
-                          Usá las flechas ← → de la tarjeta para mover la oportunidad entre columnas. Al llegar a <strong>Ganado</strong>, la empresa se marca automáticamente como Cliente.
+                          Relevá cómo operan y enviá la propuesta comercial con esquema de cobros en 3 hitos (30% adelanto, 40% pre-producción, 30% validación final).
                         </p>
                       </div>
                     </div>
 
                     <div className="flex gap-3 items-start">
                       <div className="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                        5
+                        4
                       </div>
                       <div>
-                        <strong className="text-gray-900 block font-bold text-sm">No termines en Ganado — seguí evolucionando</strong>
+                        <strong className="text-gray-900 block font-bold text-sm">Cierre → Traspaso a Proyectos & Cobros</strong>
                         <p className="text-xs text-gray-600 mt-0.5">
-                          Movelo a <strong>En Ejecución</strong> mientras implementás, y luego a <strong>Cliente Activo</strong> para gestionar la relación continua y detectar nuevas oportunidades.
+                          Al mover la oportunidad a <strong>Ganado</strong>, el sistema te permite iniciar el proyecto ágil en <strong>Proyectos & Cobros</strong>, donde gestionarás los sprints, el QA del cliente y los pagos.
                         </p>
                       </div>
                     </div>
@@ -168,42 +152,35 @@ export function OnboardingGuide() {
 
               {activeTab === "etapas" && (
                 <div className="space-y-2.5">
-                  <p className="text-xs text-gray-500 font-medium">El objetivo en cada etapa es avanzar al siguiente escalón. La relación no termina en Ganado.</p>
+                  <p className="text-xs text-gray-500 font-medium">El embudo de ventas conduce al cierre; luego el desarrollo opera por sprints ágiles:</p>
+
                   <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg text-xs">
-                    <strong className="text-gray-900 font-bold block mb-0.5">1. Prospección:</strong>
-                    Empresa identificada con problemas tecnológicos potenciales. Aún no hemos hecho contacto. <em>Objetivo: iniciar una conversación.</em>
+                    <strong className="text-gray-900 font-bold block mb-0.5">1. Prospecto:</strong>
+                    Empresa identificada con problemas potenciales. Aún sin contacto.
                   </div>
                   <div className="p-3 bg-blue-50/60 border border-blue-200 rounded-lg text-xs">
-                    <strong className="text-blue-900 font-bold block mb-0.5">2. Conversación:</strong>
-                    Primer contacto realizado (cálido o frío). Estamos escuchando a la empresa. <em>Objetivo: descubrir si hay un problema relevante.</em>
+                    <strong className="text-blue-900 font-bold block mb-0.5">2. Contacto:</strong>
+                    Primer acercamiento realizado (visita presencial o mensaje de WhatsApp).
                   </div>
                   <div className="p-3 bg-indigo-50/60 border border-indigo-200 rounded-lg text-xs">
-                    <strong className="text-indigo-900 font-bold block mb-0.5">3. Calificación:</strong>
-                    Validamos que el problema tiene impacto real y que hay voluntad de resolverlo. <em>Objetivo: conseguir el diagnóstico.</em>
+                    <strong className="text-indigo-900 font-bold block mb-0.5">3. Conversación:</strong>
+                    Escuchando a la empresa para validar si existe un problema con impacto real.
                   </div>
                   <div className="p-3 bg-[#f4b400]/10 border border-[#f4b400]/40 rounded-lg text-xs">
                     <strong className="text-gray-900 font-bold block mb-0.5">★ 4. Diagnóstico (Puerta de Entrada):</strong>
-                    Relevamiento sin costo: entendemos cómo opera la empresa, qué sistemas usa y qué oportunidades existen. <em>Objetivo: identificar oportunidades concretas.</em>
+                    Relevamiento sin costo de sus sistemas y procesos para detectar oportunidades.
                   </div>
                   <div className="p-3 bg-purple-50/60 border border-purple-200 rounded-lg text-xs">
                     <strong className="text-purple-900 font-bold block mb-0.5">5. Propuesta:</strong>
-                    Enviamos solución técnica con alcance y presupuesto, basada en el diagnóstico. <em>Objetivo: convertir la oportunidad en proyecto.</em>
+                    Enviamos la solución técnica y cotización estructurada en 30/40/30.
                   </div>
                   <div className="p-3 bg-emerald-50 border border-emerald-300 rounded-lg text-xs">
                     <strong className="text-emerald-900 font-bold block mb-0.5">6. Ganado ✓:</strong>
-                    El cliente aceptó. Pasa a ser cliente oficial de SinapsIA. <em>La empresa queda marcada automáticamente como "Cliente".</em>
-                  </div>
-                  <div className="p-3 bg-teal-50 border border-teal-300 rounded-lg text-xs">
-                    <strong className="text-teal-900 font-bold block mb-0.5">7. En Ejecución:</strong>
-                    Implementación en curso — el equipo está entregando la solución. <em>Objetivo: generar resultado y confianza.</em>
-                  </div>
-                  <div className="p-3 bg-sky-50 border border-sky-300 rounded-lg text-xs">
-                    <strong className="text-sky-900 font-bold block mb-0.5">8. Cliente Activo (Recurrente):</strong>
-                    Proyecto terminado, relación continua. SinapsIA sigue identificando nuevas oportunidades. <em>Objetivo: evolución constante.</em>
+                    El cliente aceptó → Gatilla la creación del Proyecto en <em>Proyectos & Cobros</em>.
                   </div>
                   <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-xs">
-                    <strong className="text-red-900 font-bold block mb-0.5">9. Perdido:</strong>
-                    No había presupuesto, no era viable técnicamente o se postergó. Puede reactivarse a futuro.
+                    <strong className="text-red-900 font-bold block mb-0.5">7. Perdido:</strong>
+                    Sin presupuesto o postergado.
                   </div>
                 </div>
               )}
@@ -211,28 +188,28 @@ export function OnboardingGuide() {
               {activeTab === "terminos" && (
                 <div className="space-y-4">
                   <div className="bg-[#09090b] text-white p-4 rounded-xl text-center">
-                    <span className="text-[#f4b400] font-bold text-xs uppercase block mb-1">Principio Rector</span>
+                    <span className="text-[#f4b400] font-bold text-xs uppercase block mb-1">Estructura Estándar de Cobros</span>
                     <p className="text-sm font-semibold">
-                      "Aprovechamos los sistemas que ya tenés. Desarrollamos los que te faltan."
+                      30% Adelanto (Inicio) → 40% Pre-Producción (Testing) → 30% Cierre (Aprobación)
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                     <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg">
-                      <strong className="text-gray-900 block font-bold mb-1">Decisor:</strong>
-                      Persona con autoridad para autorizar presupuestos y cambios (Dueño, Director, Gerente General).
+                      <strong className="text-gray-900 block font-bold mb-1">Fases Ágiles:</strong>
+                      Cada sprint pasa por: <em>Análisis Profundo → Desarrollo → QA SinapsIA → QA Cliente → Listo</em>.
                     </div>
                     <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg">
-                      <strong className="text-gray-900 block font-bold mb-1">Pipeline Value:</strong>
-                      Suma total en dólares de todas las oportunidades abiertas en negociación.
+                      <strong className="text-gray-900 block font-bold mb-1">QA del Cliente:</strong>
+                      Desarrollo iterativo asistido por IA donde el cliente valida avances continuos.
                     </div>
                     <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg">
-                      <strong className="text-gray-900 block font-bold mb-1">Win Rate (%):</strong>
-                      Porcentaje de propuestas ganadas sobre el total de cierres (Ganados vs Perdidos).
+                      <strong className="text-gray-900 block font-bold mb-1">Features Post-Venta:</strong>
+                      Nuevos pedidos después del cierre se cargan en <em>Evolución</em> y se cobran al 100% contra entrega.
                     </div>
                     <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg">
-                      <strong className="text-gray-900 block font-bold mb-1">Manual Interno:</strong>
-                      Podés consultar en cualquier momento la pestaña **"Manual / Playbook"** para leer los guiones y preguntas clave.
+                      <strong className="text-gray-900 block font-bold mb-1">Proyectos Paralelos:</strong>
+                      Si surge una necesidad grande en un cliente existente, se abre un nuevo proyecto independiente.
                     </div>
                   </div>
                 </div>

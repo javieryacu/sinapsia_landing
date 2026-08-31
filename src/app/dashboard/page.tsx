@@ -13,9 +13,10 @@ import {
   Sparkles,
   Target,
   Cpu,
-  Stethoscope,
-  Rocket,
-  RefreshCw,
+  FolderGit2,
+  DollarSign,
+  Clock,
+  Layers,
 } from "lucide-react";
 
 type Stats = {
@@ -25,34 +26,37 @@ type Stats = {
   winRate: number;
   totalCompanies: number;
   totalContacts: number;
-  clientsInExecution: number;
   diagnosisConversionRate: number;
   propuestaConversionRate: number;
   stageCounts: Record<string, number>;
   solutionTypeCounts: Record<string, number>;
+  totalProjects: number;
+  activeProjects: number;
+  completedProjects: number;
+  totalProjectPortfolioValue: number;
+  totalCollected: number;
+  totalPendingReceivables: number;
+  recentOpportunities: any[];
+  recentProjects: any[];
 };
 
 const STAGE_LABELS: Record<string, string> = {
-  PROSPECCION:  "Prospección",
-  CONVERSACION: "Conversación",
-  CALIFICACION: "Calificación",
-  DIAGNOSTICO:  "Diagnóstico",
-  PROPUESTA:    "Propuesta",
-  GANADO:       "Ganado",
-  EJECUCION:    "En Ejecución",
-  RECURRENTE:   "Cliente Activo",
+  PROSPECTO:    "1. Prospecto",
+  CONTACTO:     "2. Contacto",
+  CONVERSACION: "3. Conversación",
+  DIAGNOSTICO:  "4. Diagnóstico ★",
+  PROPUESTA:    "5. Propuesta",
+  GANADO:       "6. Ganado ✓",
   PERDIDO:      "Perdido",
 };
 
 const STAGE_COLORS: Record<string, string> = {
-  PROSPECCION:  "bg-gray-400",
-  CONVERSACION: "bg-blue-400",
-  CALIFICACION: "bg-indigo-500",
+  PROSPECTO:    "bg-gray-400",
+  CONTACTO:     "bg-blue-400",
+  CONVERSACION: "bg-indigo-500",
   DIAGNOSTICO:  "bg-[#f4b400]",
   PROPUESTA:    "bg-purple-500",
   GANADO:       "bg-emerald-500",
-  EJECUCION:    "bg-teal-500",
-  RECURRENTE:   "bg-sky-500",
   PERDIDO:      "bg-red-400",
 };
 
@@ -69,7 +73,9 @@ export default function DashboardPage() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => { fetchStats(); }, []);
+  useEffect(() => {
+    fetchStats();
+  }, []);
 
   const fetchStats = async () => {
     try {
@@ -82,8 +88,12 @@ export default function DashboardPage() {
     }
   };
 
-  const formatMoney = (val: number) =>
-    new Intl.NumberFormat("es-AR", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(val);
+  const formatMoney = (val?: number) =>
+    new Intl.NumberFormat("es-AR", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    }).format(val || 0);
 
   const num = (n?: number) => (loading ? "..." : String(n ?? 0));
   const pct = (n?: number) => (loading ? "..." : `${n ?? 0}%`);
@@ -91,170 +101,206 @@ export default function DashboardPage() {
   return (
     <div className="flex-1 flex flex-col font-['Hanken_Grotesk',sans-serif]">
       <Header
-        title="Panel General"
-        subtitle="Métricas según el Playbook Comercial SinapsIA"
+        title="Panel General SinapsIA"
+        subtitle="Control unificado de ventas consultivas, desarrollo ágil y cobranzas (30/40/30)"
       />
 
       <div className="p-4 sm:p-8 space-y-6 sm:space-y-8">
+        {/* === SECTION 1: EMBUDO DE VENTAS === */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#f4b400]" />
+              <h2 className="text-xs font-black uppercase tracking-wider text-gray-700">
+                1. Embudo Comercial de Ventas (Visitas & WhatsApp)
+              </h2>
+            </div>
+            <Link
+              href="/dashboard/pipeline"
+              className="text-xs font-bold text-gray-500 hover:text-black flex items-center gap-1"
+            >
+              <span>Ver Pipeline</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
 
-        {/* === KPIs Row 1: Embudo activo === */}
-        <div>
-          <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Embudo Comercial Activo</h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-
-            {/* Oportunidades activas */}
-            <div className="bg-white rounded-xl p-5 border border-gray-200 shadow-xs">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div className="bg-white p-4 sm:p-5 rounded-2xl border border-gray-200 shadow-xs">
               <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-gray-500">Prospectos Activos</p>
-                  <h3 className="text-3xl font-black text-gray-900 mt-1">{num(stats?.activeCount)}</h3>
-                </div>
-                <div className="p-2.5 bg-amber-50 rounded-lg text-[#f4b400]">
-                  <Kanban className="w-5 h-5" />
+                <span className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  Prospectos Activos
+                </span>
+                <div className="p-2 bg-[#f4b400]/10 rounded-xl text-[#09090b]">
+                  <Target className="w-4 h-4 text-[#f4b400]" />
                 </div>
               </div>
-              <p className="text-xs text-gray-500 mt-3">En gestión comercial</p>
+              <div className="text-2xl sm:text-3xl font-black text-[#09090b] mt-2">
+                {num(stats?.activeCount)}
+              </div>
+              <p className="text-[10px] text-gray-400 mt-1">En negociación</p>
             </div>
 
-            {/* Valor en pipeline */}
-            <div className="bg-white rounded-xl p-5 border border-gray-200 shadow-xs">
+            <div className="bg-white p-4 sm:p-5 rounded-2xl border border-gray-200 shadow-xs">
               <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-gray-500">Valor en Pipeline</p>
-                  <h3 className="text-2xl font-black text-gray-900 mt-1">
-                    {loading ? "..." : formatMoney(stats?.pipelineValue ?? 0)}
-                  </h3>
-                </div>
-                <div className="p-2.5 bg-blue-50 rounded-lg text-blue-600">
-                  <TrendingUp className="w-5 h-5" />
+                <span className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  Pipeline Value
+                </span>
+                <div className="p-2 bg-indigo-50 rounded-xl text-indigo-700">
+                  <TrendingUp className="w-4 h-4" />
                 </div>
               </div>
-              <p className="text-xs text-gray-500 mt-3">En negociación activa</p>
+              <div className="text-2xl sm:text-3xl font-black text-[#09090b] mt-2">
+                {loading ? "..." : formatMoney(stats?.pipelineValue)}
+              </div>
+              <p className="text-[10px] text-gray-400 mt-1">Cotizaciones abiertas</p>
             </div>
 
-            {/* Diagnósticos en curso — la puerta de entrada */}
-            <div className="bg-white rounded-xl p-5 border border-[#f4b400]/40 shadow-xs">
+            <div className="bg-white p-4 sm:p-5 rounded-2xl border border-gray-200 shadow-xs">
               <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-amber-700">Diagnósticos</p>
-                  <h3 className="text-3xl font-black text-gray-900 mt-1">{num(stats?.stageCounts?.DIAGNOSTICO)}</h3>
-                </div>
-                <div className="p-2.5 bg-[#f4b400]/10 rounded-lg text-[#f4b400]">
-                  <Stethoscope className="w-5 h-5" />
+                <span className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  Conv. a Diagnóstico
+                </span>
+                <div className="p-2 bg-amber-50 rounded-xl text-amber-800">
+                  <Sparkles className="w-4 h-4" />
                 </div>
               </div>
-              <p className="text-xs text-amber-700 font-medium mt-3">Puerta de entrada clave</p>
+              <div className="text-2xl sm:text-3xl font-black text-amber-800 mt-2">
+                {pct(stats?.diagnosisConversionRate)}
+              </div>
+              <p className="text-[10px] text-gray-400 mt-1">Puerta de entrada SinapsIA</p>
             </div>
 
-            {/* Win Rate */}
-            <div className="bg-white rounded-xl p-5 border border-gray-200 shadow-xs">
+            <div className="bg-white p-4 sm:p-5 rounded-2xl border border-gray-200 shadow-xs">
               <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-gray-500">Tasa de Cierre</p>
-                  <h3 className="text-3xl font-black text-gray-900 mt-1">{pct(stats?.winRate)}</h3>
-                </div>
-                <div className="p-2.5 bg-emerald-50 rounded-lg text-emerald-600">
-                  <CheckCircle2 className="w-5 h-5" />
+                <span className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  Win Rate (Cierre)
+                </span>
+                <div className="p-2 bg-emerald-50 rounded-xl text-emerald-600">
+                  <CheckCircle2 className="w-4 h-4" />
                 </div>
               </div>
-              <p className="text-xs text-gray-500 mt-3">
-                {loading ? "" : `${stats?.stageCounts?.GANADO ?? 0} ganados vs ${stats?.stageCounts?.PERDIDO ?? 0} perdidos`}
-              </p>
+              <div className="text-2xl sm:text-3xl font-black text-emerald-700 mt-2">
+                {pct(stats?.winRate)}
+              </div>
+              <p className="text-[10px] text-gray-400 mt-1">Ganadas vs Perdidas</p>
             </div>
           </div>
         </div>
 
-        {/* === KPIs Row 2: Clientes activos (post-cierre) === */}
-        <div>
-          <h2 className="text-xs font-bold uppercase tracking-widest text-emerald-500 mb-3">Clientes Activos & Recurrencia</h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* === SECTION 2: PROYECTOS & COBRANZAS === */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
+              <h2 className="text-xs font-black uppercase tracking-wider text-gray-700">
+                2. Desarrollo Ágil & Control de Cobros (30% / 40% / 30%)
+              </h2>
+            </div>
+            <Link
+              href="/dashboard/projects"
+              className="text-xs font-bold text-gray-500 hover:text-black flex items-center gap-1"
+            >
+              <span>Ver Proyectos</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
 
-            <div className="bg-white rounded-xl p-5 border border-emerald-200 shadow-xs">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div className="bg-white p-4 sm:p-5 rounded-2xl border border-gray-200 shadow-xs">
               <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-emerald-700">En Ejecución</p>
-                  <h3 className="text-3xl font-black text-gray-900 mt-1">{num(stats?.stageCounts?.EJECUCION)}</h3>
-                </div>
-                <div className="p-2.5 bg-teal-50 rounded-lg text-teal-600">
-                  <Rocket className="w-5 h-5" />
+                <span className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  Proyectos Activos
+                </span>
+                <div className="p-2 bg-blue-50 rounded-xl text-blue-700">
+                  <FolderGit2 className="w-4 h-4" />
                 </div>
               </div>
-              <p className="text-xs text-emerald-600 font-medium mt-3">Implementación en curso</p>
+              <div className="text-2xl sm:text-3xl font-black text-blue-900 mt-2">
+                {num(stats?.activeProjects)}
+              </div>
+              <p className="text-[10px] text-gray-400 mt-1">{num(stats?.completedProjects)} completados</p>
             </div>
 
-            <div className="bg-white rounded-xl p-5 border border-sky-200 shadow-xs">
+            <div className="bg-white p-4 sm:p-5 rounded-2xl border border-gray-200 shadow-xs">
               <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-sky-700">Clientes Recurrentes</p>
-                  <h3 className="text-3xl font-black text-gray-900 mt-1">{num(stats?.stageCounts?.RECURRENTE)}</h3>
-                </div>
-                <div className="p-2.5 bg-sky-50 rounded-lg text-sky-600">
-                  <RefreshCw className="w-5 h-5" />
+                <span className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  Cartera Contratada
+                </span>
+                <div className="p-2 bg-purple-50 rounded-xl text-purple-700">
+                  <Layers className="w-4 h-4" />
                 </div>
               </div>
-              <p className="text-xs text-sky-600 font-medium mt-3">Relación continua activa</p>
+              <div className="text-2xl sm:text-3xl font-black text-gray-900 mt-2">
+                {loading ? "..." : formatMoney(stats?.totalProjectPortfolioValue)}
+              </div>
+              <p className="text-[10px] text-gray-400 mt-1">Total de proyectos</p>
             </div>
 
-            <div className="bg-white rounded-xl p-5 border border-gray-200 shadow-xs">
+            <div className="bg-white p-4 sm:p-5 rounded-2xl border border-gray-200 shadow-xs">
               <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-gray-500">Ingresos Cerrados</p>
-                  <h3 className="text-2xl font-black text-gray-900 mt-1">
-                    {loading ? "..." : formatMoney(stats?.wonValue ?? 0)}
-                  </h3>
-                </div>
-                <div className="p-2.5 bg-emerald-50 rounded-lg text-emerald-600">
-                  <CheckCircle2 className="w-5 h-5" />
+                <span className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  Cobrado Real
+                </span>
+                <div className="p-2 bg-emerald-50 rounded-xl text-emerald-700">
+                  <CheckCircle2 className="w-4 h-4" />
                 </div>
               </div>
-              <p className="text-xs text-gray-500 mt-3">Proyectos ganados</p>
+              <div className="text-2xl sm:text-3xl font-black text-emerald-700 mt-2">
+                {loading ? "..." : formatMoney(stats?.totalCollected)}
+              </div>
+              <p className="text-[10px] text-emerald-600 font-bold mt-1">Cobrado en cuenta</p>
             </div>
 
-            <div className="bg-white rounded-xl p-5 border border-gray-200 shadow-xs">
+            <div className="bg-white p-4 sm:p-5 rounded-2xl border border-gray-200 shadow-xs">
               <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-gray-500">Directorio B2B</p>
-                  <h3 className="text-3xl font-black text-gray-900 mt-1">{num(stats?.totalCompanies)}</h3>
-                </div>
-                <div className="p-2.5 bg-gray-100 rounded-lg text-gray-600">
-                  <Building2 className="w-5 h-5" />
+                <span className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  Pendiente por Cobrar
+                </span>
+                <div className="p-2 bg-amber-50 rounded-xl text-amber-700">
+                  <Clock className="w-4 h-4" />
                 </div>
               </div>
-              <p className="text-xs text-gray-500 mt-3">{num(stats?.totalContacts)} contactos registrados</p>
+              <div className="text-2xl sm:text-3xl font-black text-amber-900 mt-2">
+                {loading ? "..." : formatMoney(stats?.totalPendingReceivables)}
+              </div>
+              <p className="text-[10px] text-amber-700 font-bold mt-1">Hitos 30 / 40 / 30</p>
             </div>
           </div>
         </div>
 
-        {/* === Tasas de conversión (Playbook §15) + Embudo === */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* === SECTION 3: DISTRIBUCIÓN DEL EMBUDO Y SOLUCIONES === */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Funnel distribution */}
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs space-y-4">
+            <h3 className="font-extrabold text-sm text-gray-900 flex items-center justify-between">
+              <span>Distribución por Etapa de Ventas</span>
+              <span className="text-xs text-gray-400 font-medium">
+                Total: {stats?.activeCount ?? 0} activas
+              </span>
+            </h3>
 
-          {/* Embudo por etapas */}
-          <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6 shadow-xs">
-            <div className="flex justify-between items-center mb-5">
-              <div>
-                <h3 className="font-bold text-gray-900">Distribución del Embudo Comercial</h3>
-                <p className="text-xs text-gray-500 mt-0.5">Todas las etapas según Playbook</p>
-              </div>
-              <Link href="/dashboard/pipeline" className="text-xs font-bold text-[#09090b] hover:text-[#f4b400] flex items-center gap-1">
-                <span>Ver Tablero</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
-            </div>
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               {Object.entries(STAGE_LABELS).map(([key, label]) => {
                 const count = stats?.stageCounts?.[key] ?? 0;
-                const total = Math.max(1, Object.values(stats?.stageCounts ?? {}).reduce((a, b) => a + b, 0));
-                const pct = Math.min(100, Math.round((count / total) * 100));
+                const total = stats?.activeCount || 1;
+                const percentage = Math.round((count / total) * 100);
+                const color = STAGE_COLORS[key] || "bg-gray-300";
+
                 return (
                   <div key={key} className="space-y-1">
-                    <div className="flex justify-between text-xs font-semibold">
+                    <div className="flex justify-between text-xs font-bold">
                       <span className="text-gray-700">{label}</span>
-                      <span className="text-gray-900 font-bold">{count}</span>
+                      <span className="text-gray-900">
+                        {count}{" "}
+                        <span className="text-[10px] text-gray-400 font-normal">
+                          ({percentage}%)
+                        </span>
+                      </span>
                     </div>
-                    <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+                    <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
                       <div
-                        className={`h-full rounded-full transition-all duration-500 ${STAGE_COLORS[key]}`}
-                        style={{ width: `${Math.max(count > 0 ? 4 : 0, pct)}%` }}
+                        className={`h-full rounded-full transition-all ${color}`}
+                        style={{ width: `${Math.min(percentage, 100)}%` }}
                       />
                     </div>
                   </div>
@@ -263,118 +309,48 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Tasas de conversión + Tipo de solución */}
-          <div className="space-y-4">
-            {/* Tasas de conversión — Playbook §15 */}
-            <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-xs space-y-4">
-              <div className="flex items-center gap-2">
-                <Target className="w-4 h-4 text-[#f4b400]" />
-                <h3 className="font-bold text-gray-900 text-sm">Tasas de Conversión</h3>
-              </div>
-
-              <div className="space-y-3 text-sm">
-                <div>
-                  <div className="flex justify-between text-xs mb-1">
-                    <span className="text-gray-600">Prospecto → Diagnóstico</span>
-                    <span className="font-black text-[#f4b400]">{pct(stats?.diagnosisConversionRate)}</span>
-                  </div>
-                  <div className="h-2 bg-gray-100 rounded-full">
-                    <div className="h-2 bg-[#f4b400] rounded-full" style={{ width: `${stats?.diagnosisConversionRate ?? 0}%` }} />
-                  </div>
-                </div>
-                <div>
-                  <div className="flex justify-between text-xs mb-1">
-                    <span className="text-gray-600">Diagnóstico → Propuesta</span>
-                    <span className="font-black text-purple-600">{pct(stats?.propuestaConversionRate)}</span>
-                  </div>
-                  <div className="h-2 bg-gray-100 rounded-full">
-                    <div className="h-2 bg-purple-500 rounded-full" style={{ width: `${stats?.propuestaConversionRate ?? 0}%` }} />
-                  </div>
-                </div>
-                <div>
-                  <div className="flex justify-between text-xs mb-1">
-                    <span className="text-gray-600">Tasa de Cierre</span>
-                    <span className="font-black text-emerald-600">{pct(stats?.winRate)}</span>
-                  </div>
-                  <div className="h-2 bg-gray-100 rounded-full">
-                    <div className="h-2 bg-emerald-500 rounded-full" style={{ width: `${stats?.winRate ?? 0}%` }} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Tipo de solución dominante */}
-            <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-xs">
-              <div className="flex items-center gap-2 mb-3">
-                <Cpu className="w-4 h-4 text-gray-500" />
-                <h3 className="font-bold text-gray-900 text-sm">Tipo de Solución</h3>
-              </div>
-              {stats && Object.keys(stats.solutionTypeCounts || {}).length > 0 ? (
-                <div className="space-y-2">
-                  {Object.entries(stats.solutionTypeCounts).sort((a, b) => b[1] - a[1]).map(([key, count]) => (
-                    <div key={key} className="flex justify-between text-xs">
-                      <span className="text-gray-700">{SOLUTION_LABELS[key] || key}</span>
-                      <span className="font-bold text-gray-900">{count}</span>
+          {/* Solutions & Directory counts */}
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs space-y-5">
+            <div>
+              <h3 className="font-extrabold text-sm text-gray-900 mb-3">
+                Distribución por Tipo de Solución SinapsIA
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {Object.entries(SOLUTION_LABELS).map(([key, label]) => {
+                  const count = stats?.solutionTypeCounts?.[key] ?? 0;
+                  return (
+                    <div
+                      key={key}
+                      className="p-3 bg-gray-50 border border-gray-200 rounded-xl text-center"
+                    >
+                      <span className="text-[10px] font-bold text-gray-500 block uppercase truncate">
+                        {label}
+                      </span>
+                      <span className="text-lg font-black text-gray-900 mt-0.5 block">
+                        {count}
+                      </span>
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-xs text-gray-400 italic">Sin datos aún. Se completará al registrar oportunidades con tipo de solución.</p>
-              )}
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Acción recomendada */}
-            <div className="bg-[#f4b400]/10 border border-[#f4b400]/30 rounded-xl p-4">
-              <div className="flex items-center gap-2 text-[#09090b] font-bold text-xs mb-1.5">
-                <Sparkles className="w-4 h-4 text-[#f4b400]" />
-                Acción Recomendada
+            <div className="pt-4 border-t border-gray-100 flex justify-between items-center text-xs">
+              <div className="flex items-center gap-2">
+                <Building2 className="w-4 h-4 text-gray-400" />
+                <span className="text-gray-600 font-semibold">
+                  Empresas en Directorio: <strong>{num(stats?.totalCompanies)}</strong>
+                </span>
               </div>
-              <p className="text-xs text-gray-700 leading-relaxed">
-                {(stats?.stageCounts?.DIAGNOSTICO ?? 0) > 0
-                  ? `Hay ${stats?.stageCounts?.DIAGNOSTICO} diagnóstico${stats?.stageCounts?.DIAGNOSTICO === 1 ? "" : "s"} en curso. Priorizá convertirlos en Propuestas.`
-                  : (stats?.stageCounts?.CALIFICACION ?? 0) > 0
-                  ? `Hay ${stats?.stageCounts?.CALIFICACION} prospecto${stats?.stageCounts?.CALIFICACION === 1 ? "" : "s"} en Calificación. Buscá conseguir el Diagnóstico.`
-                  : "Registrá nuevas oportunidades en el Pipeline para comenzar el proceso comercial."}
-              </p>
-              <Link
-                href="/dashboard/pipeline"
-                className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-[#09090b] hover:text-[#f4b400] transition-colors"
-              >
-                <span>Ir al Pipeline</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </Link>
+              <div className="flex items-center gap-2">
+                <Users className="w-4 h-4 text-gray-400" />
+                <span className="text-gray-600 font-semibold">
+                  Contactos Registrados: <strong>{num(stats?.totalContacts)}</strong>
+                </span>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Directorio */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Link href="/dashboard/companies" className="bg-white rounded-xl border border-gray-200 p-5 shadow-xs hover:border-[#f4b400] transition-colors flex items-center justify-between group">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-gray-100 rounded-lg group-hover:bg-[#f4b400]/10 transition-colors">
-                <Building2 className="w-5 h-5 text-gray-700" />
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 font-bold uppercase">Empresas</p>
-                <p className="text-xl font-black text-gray-900">{num(stats?.totalCompanies)}</p>
-              </div>
-            </div>
-            <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-[#f4b400]" />
-          </Link>
-          <Link href="/dashboard/contacts" className="bg-white rounded-xl border border-gray-200 p-5 shadow-xs hover:border-[#f4b400] transition-colors flex items-center justify-between group">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-gray-100 rounded-lg group-hover:bg-[#f4b400]/10 transition-colors">
-                <Users className="w-5 h-5 text-gray-700" />
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 font-bold uppercase">Contactos</p>
-                <p className="text-xl font-black text-gray-900">{num(stats?.totalContacts)}</p>
-              </div>
-            </div>
-            <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-[#f4b400]" />
-          </Link>
-        </div>
-
       </div>
     </div>
   );
